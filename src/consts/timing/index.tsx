@@ -1,0 +1,3 @@
+export const TIMING = {
+  LOADING_SCREEN_FADE_ANIMATION: 300,
+};

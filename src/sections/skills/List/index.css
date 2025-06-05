@@ -1,0 +1,71 @@
+.skills-list {
+  --item-size: 144px;
+}
+
+@keyframes auto-run {
+  from {
+    right: 100%;
+  }
+  to {
+    right: calc(var(--item-size) * -1);
+  }
+}
+
+.skills-list:has(li:hover) li {
+  animation-play-state: paused;
+}
+
+.skills-list li {
+  animation-name: auto-run;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  filter: brightness(0.2);
+  box-shadow: 0px 0px 4px var(--skill-color);
+}
+
+.skills-list li:hover {
+  scale: 1.2;
+  filter: brightness(1);
+  box-shadow: 0px 0px 30px var(--skill-color);
+  z-index: 4;
+}
+
+.skills-list li:hover + * {
+  scale: 1.1;
+  filter: brightness(0.8);
+  box-shadow: 0px 0px 15px var(--skill-color);
+  z-index: 3;
+}
+
+.skills-list li:hover + * + * {
+  scale: 1.05;
+  filter: brightness(0.6);
+  box-shadow: 0px 0px 10px var(--skill-color);
+  z-index: 2;
+}
+
+.skills-list li:hover + * + * + * {
+  box-shadow: 0px 0px 8px var(--skill-color);
+  filter: brightness(0.4);
+  z-index: 1;
+}
+
+.skills-list li:has(+ *:hover) {
+  scale: 1.1;
+  filter: brightness(0.8);
+  box-shadow: 0px 0px 15px var(--skill-color);
+  z-index: 3;
+}
+
+.skills-list li:has(+ * + *:hover) {
+  scale: 1.05;
+  filter: brightness(0.6);
+  box-shadow: 0px 0px 10px var(--skill-color);
+  z-index: 2;
+}
+
+.skills-list li:has(+ * + *:hover) {
+  filter: brightness(0.4);
+  box-shadow: 0px 0px 8px var(--skill-color);
+  z-index: 1;
+}
