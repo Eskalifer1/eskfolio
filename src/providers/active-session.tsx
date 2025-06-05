@@ -67,8 +67,13 @@ export const ActiveSectionProvider = ({
     }
   };
 
-  const transitionTo = async (target: Section) => {
+  const transitionTo = async (target: Section, isFirstLoad?: boolean) => {
     if (target === activeSection) return;
+
+    if (isTransitioning && !isFirstLoad) return;
+    // Due to this setting loading section after delay we need to add this condition
+
+    if (loadingSection && !isFirstLoad) return;
 
     setIsTransitioning(true);
     setLoadingSection(target);
@@ -84,6 +89,7 @@ export const ActiveSectionProvider = ({
     setIsTransitioning(false);
 
     await delay("LOADING_SCREEN_FADE_ANIMATION");
+    // After delay for Loading screen
     setLoadingSection(null);
   };
 
@@ -100,7 +106,7 @@ export const ActiveSectionProvider = ({
   };
 
   useLayoutEffect(() => {
-    transitionTo(SECTION_CONFIG.hero.key);
+    transitionTo(SECTION_CONFIG.hero.key, true);
     // eslint-disable-next-line
   }, []);
 
