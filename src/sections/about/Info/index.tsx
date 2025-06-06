@@ -28,12 +28,14 @@ function AboutInfo() {
         <AboutSocialLink
           href={socialLinks.gitHub}
           outerShadow="shadow-[0px_9px_10px_rgba(0,0,0,0.75)]"
+          aria-label="Github profile"
         >
           <GitHubIcon />
         </AboutSocialLink>
         <AboutSocialLink
           href={socialLinks.linkedIn}
           outerShadow="shadow-[2px_9px_10px_rgba(0,0,0,0.75)]"
+          aria-label="LinkedIn profile"
         >
           <LinkedInIcon />
         </AboutSocialLink>
@@ -41,6 +43,7 @@ function AboutInfo() {
           href={socialLinks.email}
           outerShadow="shadow-[6px_9px_10px_rgba(0,0,0,0.75)]"
           title={socialLinks.email}
+          aria-label="My email"
         >
           <EmailIcon />
         </AboutSocialLink>
