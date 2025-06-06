@@ -47,7 +47,7 @@ function AboutWrap({ children }: PropsType) {
   return (
     <Section
       id={SECTION_CONFIG.about.key}
-      className={`${spectral.className}`}
+      className={`${spectral.className} overflow-auto`}
       sectionClassName={`${cursorClassName} ${lightClass}`}
     >
       <BackgroundImage
@@ -59,7 +59,7 @@ function AboutWrap({ children }: PropsType) {
       />
       <div
         ref={maskRef}
-        className={`spotlight-mask ${isLightOn ? "opacity-0" : "opacity-100"}`}
+        className={`spotlight-mask max-md:hidden ${isLightOn ? "opacity-0" : "opacity-100"}`}
       />
       {children}
       <AboutLamp

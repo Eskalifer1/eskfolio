@@ -4,6 +4,8 @@ import { useActiveSection } from "@/providers/active-session";
 
 import { LiHTMLAttributes } from "react";
 
+import { Typography } from "@/components/Typography";
+
 import { cn } from "@/lib/cn";
 
 import { Section } from "@/consts/sections";
@@ -20,7 +22,7 @@ function NavItem({ sectionLink, className, children, ...props }: PropsType) {
         className="cursor-pointer capitalize hover:scale-110"
         onClick={() => transitionTo(sectionLink)}
       >
-        {children}
+        <Typography>{children}</Typography>
       </button>
     </li>
   );

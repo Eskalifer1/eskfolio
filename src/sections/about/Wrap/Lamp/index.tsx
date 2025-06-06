@@ -9,7 +9,7 @@ interface PropsType extends HTMLAttributes<HTMLDivElement> {
 function AboutLamp({ isLightOn, ...props }: PropsType) {
   return (
     <div
-      className="none absolute top-0 left-40 z-1 cursor-pointer flex-col items-center md:flex"
+      className="absolute top-0 left-40 z-1 cursor-pointer flex-col items-center flex"
       {...props}
     >
       <div className="bg-secondary pointer-events-none h-2 w-1 brightness-50" />

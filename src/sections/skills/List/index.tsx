@@ -19,7 +19,7 @@ function SkillsList() {
         className="skills-list group relative flex h-[calc(var(--item-size)*1.2)] w-full items-center gap-6 py-4"
         aria-label="List of technologies and tools I use"
         style={{
-          minWidth: `calc(var(--item-size) * ${skillsLength} * ${itemsGap})`,
+          minWidth: `calc(var(--item-size) * ${skillsLength} * var(--coefficient))`,
           height: "270px",
         }}
       >
@@ -30,8 +30,8 @@ function SkillsList() {
             style={{
               // @ts-expect-error CSS variable
               "--skill-color": skill.color,
-              animationDelay: `${index * itemsGap - 5}s`,
-              animationDuration: `${skillsLength * itemsGap}s`,
+              animationDelay: `calc((${index} * var(--coefficient) - 5) * 1s)`,
+              animationDuration: `calc(${skillsLength} * var(--coefficient) * 1s)`,
             }}
           />
         ))}

@@ -24,7 +24,7 @@ function AboutInfo() {
         This is my cozy corner of the internet — glad to have you here.
       </Typography>
       <CVButton />
-      <div className="mt-6 flex items-center gap-4">
+      <div className="mt-6 flex items-center gap-4 max-md:justify-center">
         <AboutSocialLink
           href={socialLinks.gitHub}
           outerShadow="shadow-[0px_9px_10px_rgba(0,0,0,0.75)]"

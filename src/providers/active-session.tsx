@@ -89,6 +89,7 @@ export const ActiveSectionProvider = ({
     setIsTransitioning(false);
 
     await delay("LOADING_SCREEN_FADE_ANIMATION");
+    await delay("LOADING_SCREEN_FADE_ANIMATION");
     // After delay for Loading screen
     setLoadingSection(null);
   };

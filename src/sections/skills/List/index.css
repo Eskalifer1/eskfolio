@@ -1,5 +1,13 @@
 .skills-list {
   --item-size: 144px;
+  --coefficient: 1;
+}
+
+@media (max-width: 768px) {
+  .skills-list {
+    --item-size: 120px;
+    --coefficient: 1.1;
+  }
 }
 
 @keyframes auto-run {

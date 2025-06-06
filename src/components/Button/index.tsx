@@ -13,7 +13,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const baseStyles =
-  "group flex items-center justify-center px-4 py-2 rounded-xl font-medium transition-all duration-300 ease-in-out text-sm focus:outline-none cursor-pointer disabled:pointer-events-none disabled:opacity-70";
+  "group flex items-center justify-center py-1 px-2 md:px-4 md:py-2 rounded-xl font-medium transition-all duration-300 ease-in-out text-sm focus:outline-none cursor-pointer disabled:pointer-events-none disabled:opacity-70";
 const variantStyles = {
   contained: "bg-primary text-secondary shadow-soft hover:shadow-hard",
   outlined:

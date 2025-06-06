@@ -18,7 +18,7 @@ interface WoodenFrameProps {
 
 const WoodenFrame: React.FC<WoodenFrameProps> = ({
   children,
-  className = "aspect-[3/4]",
+  className = "",
   borderWidth = 24,
   borderImageSrc = "/wooden-pattern.webp",
   borderImageSlice = "13% 4%",
@@ -27,7 +27,7 @@ const WoodenFrame: React.FC<WoodenFrameProps> = ({
   brightness = 0.75,
   insetShadow = "shadow-[inset_5px_0px_21px_rgba(0,0,0,0.75)]",
   outerShadow = "shadow-[7px_9px_20px_rgba(0,0,0,0.75)]",
-  height = "md:h-[max(320px,70%)]",
+  height = "",
 }) => {
   return (
     <div

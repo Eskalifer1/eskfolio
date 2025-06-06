@@ -9,17 +9,12 @@ import NavItem from "./NavItem";
 
 function NavBar() {
   return (
-    <header className="h-navbar max-w-section shadow-soft backdrop-supported fixed top-0 left-[50%] z-10 mx-auto mb-4 flex w-max translate-x-[-50%] items-center justify-center gap-4 rounded-b-3xl px-3 py-2">
-      <Image
-        width={64}
-        height={64}
-        src="/logo.webp"
-        alt="Logo"
-        priority
-        loading="eager"
-      />
+    <header className="h-navbar max-w-section shadow-soft backdrop-supported fixed top-0 left-[50%] z-10 mx-auto mb-4 flex w-max translate-x-[-50%] items-center justify-center gap-2 rounded-b-3xl px-3 py-2 md:gap-4">
+      <div className="relative h-12 w-12 sm:h-16 sm:w-16">
+        <Image src="/logo.webp" alt="Logo" priority fill loading="eager" />
+      </div>
       <nav>
-        <ul className="flex items-center gap-3">
+        <ul className="flex items-center gap-1 sm:gap-2 md:gap-3">
           {navItems.map((sectionLink) => (
             <NavItem sectionLink={sectionLink} key={sectionLink}>
               {SECTION_CONFIG[sectionLink].title}

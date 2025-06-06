@@ -36,7 +36,7 @@ const Section = forwardRef<HTMLElement, SectionProps>(
       >
         <div
           className={cn(
-            "mx-auto flex h-full max-w-[min(var(--spacing-section),95%)] items-center justify-center pt-3 pb-[10vh]",
+            "mx-auto flex h-full max-w-[min(var(--spacing-section),95%)] items-center justify-center px-2 pt-3 pb-[10vh] md:px-4",
             className,
           )}
         >

@@ -22,7 +22,7 @@ function SectionButtons() {
   return (
     <div
       style={getSectionStyles(activeSection)}
-      className="font-default border-primary backdrop-supported fixed right-0 bottom-0 z-10 flex flex-col gap-2 rounded-2xl border bg-transparent p-1"
+      className="font-default border-primary backdrop-supported fixed right-0 bottom-0 z-10 flex flex-col gap-1 rounded-2xl border bg-transparent p-1 sm:gap-2"
     >
       <SectionButton
         disabled={isLastSection}

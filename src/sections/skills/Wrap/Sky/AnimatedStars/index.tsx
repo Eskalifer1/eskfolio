@@ -19,7 +19,7 @@ function SkillsSkyAnimatedStars() {
 
   return (
     <>
-      <div className="absolute top-0 right-1/2 bottom-1/4 left-0 -z-1">
+      <div className="absolute top-0 right-1/2 bottom-1/4 left-0 -z-1 max-sm:hidden">
         <Lottie
           lottieRef={starsRef}
           animationData={Stars}
@@ -27,7 +27,7 @@ function SkillsSkyAnimatedStars() {
           placeholder={<></>}
         />
       </div>
-      <div className="absolute top-0 right-0 bottom-1/4 left-1/2 -z-1">
+      <div className="absolute top-0 right-0 bottom-1/4 left-1/2 -z-1 max-sm:left-0">
         <Lottie
           lottieRef={starsRef}
           animationData={Stars}
