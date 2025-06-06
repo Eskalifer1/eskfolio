@@ -24,4 +24,6 @@ function BackgroundImage({ imageProps, className, ...props }: PropsType) {
   );
 }
 
+BackgroundImage.whyDidYouRender = true;
+
 export default BackgroundImage;

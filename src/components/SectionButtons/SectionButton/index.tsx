@@ -39,4 +39,6 @@ function SectionButton({
   );
 }
 
+// SectionButton.whyDidYouRender = true;
+
 export default SectionButton;

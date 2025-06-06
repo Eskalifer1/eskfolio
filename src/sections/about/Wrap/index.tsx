@@ -73,4 +73,6 @@ function AboutWrap({ children }: PropsType) {
   );
 }
 
+AboutWrap.whyDidYouRender = true;
+
 export default AboutWrap;

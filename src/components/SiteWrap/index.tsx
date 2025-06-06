@@ -1,6 +1,6 @@
 "use client";
 
-import { useActiveSection } from "@/providers/active-session";
+import { useActiveSection } from "@/providers/section";
 import { getSectionStyles } from "@/theme/palette";
 
 import { ReactNode } from "react";
@@ -32,5 +32,7 @@ function SiteWrap({ children }: PropsType) {
     </>
   );
 }
+
+// SiteWrap.whyDidYouRender = true;
 
 export default SiteWrap;

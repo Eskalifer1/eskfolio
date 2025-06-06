@@ -9,10 +9,7 @@ import { quicksand } from "@/lib/fonts/quicksand";
 
 import { SECTION_CONFIG } from "@/consts/sections";
 
-const SkillsSky = dynamic(() => import("./Sky").then((mod) => mod.default), {
-  ssr: false,
-  loading: () => null,
-});
+const SkillsSky = dynamic(() => import("./Sky"));
 
 interface PropsType {
   children: ReactNode;

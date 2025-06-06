@@ -47,6 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/* <WDYRWrapper> */}
       <Providers>
         <body className="antialiased">
           <SiteWrap>
@@ -55,6 +56,7 @@ export default function RootLayout({
           </SiteWrap>
         </body>
       </Providers>
+      {/* </WDYRWrapper> */}
     </html>
   );
 }

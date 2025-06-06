@@ -1,6 +1,6 @@
 "use client";
 
-import { useActiveSection } from "@/providers/active-session";
+import { useSectionNavigation } from "@/providers/section";
 
 import { LiHTMLAttributes } from "react";
 
@@ -15,7 +15,7 @@ interface PropsType extends LiHTMLAttributes<HTMLLIElement> {
 }
 
 function NavItem({ sectionLink, className, children, ...props }: PropsType) {
-  const { transitionTo } = useActiveSection();
+  const { transitionTo } = useSectionNavigation();
   return (
     <li className={cn("", className)} {...props}>
       <button

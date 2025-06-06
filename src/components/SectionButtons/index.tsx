@@ -1,6 +1,6 @@
 "use client";
 
-import { useActiveSection } from "@/providers/active-session";
+import { useActiveSection, useSectionNavigation } from "@/providers/section";
 import { getSectionStyles } from "@/theme/palette";
 
 import { SectionButtonsIconsMap } from "@/consts/sections/section-buttons-icons";
@@ -8,13 +8,9 @@ import { SectionButtonsIconsMap } from "@/consts/sections/section-buttons-icons"
 import SectionButton from "./SectionButton";
 
 function SectionButtons() {
-  const {
-    isFirstSection,
-    isLastSection,
-    activeSection,
-    goToNextSection,
-    goToPrevSection,
-  } = useActiveSection();
+  const { isFirstSection, isLastSection, activeSection } = useActiveSection();
+
+  const { goToNextSection, goToPrevSection } = useSectionNavigation();
 
   const next = SectionButtonsIconsMap[activeSection]?.next;
   const prev = SectionButtonsIconsMap[activeSection]?.prev;
@@ -43,5 +39,7 @@ function SectionButtons() {
     </div>
   );
 }
+
+// SectionButtons.whyDidYouRender = true;
 
 export default SectionButtons;

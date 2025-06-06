@@ -10,9 +10,12 @@ function AboutAvatar() {
         fill
         alt="My photo"
         className="object-cover"
+        sizes="50vw"
       />
     </WoodenFrame>
   );
 }
+
+AboutAvatar.whyDidYouRender = true;
 
 export default AboutAvatar;

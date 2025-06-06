@@ -1,13 +1,13 @@
 "use client";
 
-import { useActiveSection } from "@/providers/active-session";
+import { useSectionNavigation } from "@/providers/section";
 
 import Button from "@/components/Button";
 
 import { SECTION_CONFIG } from "@/consts/sections";
 
 function HeroExploreButton() {
-  const { transitionTo } = useActiveSection();
+  const { transitionTo } = useSectionNavigation();
 
   const handleGoToAboutSection = () => {
     transitionTo(SECTION_CONFIG.about.key);

@@ -9,8 +9,6 @@ function SkillsList() {
   const maskImage =
     "mask-[linear-gradient(to_right,transparent_0%,black_5%,black_95%,transparent_100%)]";
 
-  const itemsGap = 1;
-
   return (
     <div
       className={`h-full w-full overflow-hidden ${maskImage} flex items-center justify-center`}

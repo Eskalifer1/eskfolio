@@ -1,6 +1,6 @@
 "use client";
 
-import { useActiveSection } from "@/providers/active-session";
+import { useActiveSection } from "@/providers/section";
 import type { LottieComponentProps, LottieRefCurrentProps } from "lottie-react";
 
 import { useEffect, useRef } from "react";

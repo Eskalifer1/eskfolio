@@ -1,14 +1,13 @@
 "use client";
 
-import { useActiveSection } from "@/providers/active-session";
+import { useLoadingSection } from "@/providers/section";
 
 import { cn } from "@/lib/cn";
 
 import { SECTION_CONFIG } from "@/consts/sections";
 
 function LoadingScreen() {
-  const { isTransitioning, loadingSection } = useActiveSection();
-
+  const { isTransitioning, loadingSection } = useLoadingSection();
   // animation-duration is 1 times less than duration of delay for change section
   const animation = `animate-[animation-full-width_linear_600ms_forwards]`;
 
@@ -35,5 +34,7 @@ function LoadingScreen() {
     </div>
   );
 }
+
+LoadingScreen.whyDidYouRender = true;
 
 export default LoadingScreen;

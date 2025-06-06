@@ -1,4 +1,4 @@
-import { LiHTMLAttributes } from "react";
+import { LiHTMLAttributes, memo } from "react";
 
 import { Typography } from "@/components/Typography";
 
@@ -28,4 +28,4 @@ function SkillListItem({ skill, className, ...rest }: PropsType) {
   );
 }
 
-export default SkillListItem;
+export default memo(SkillListItem);
