@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 
 import HeroSection from "@/sections/hero";
+import ProjectsSection from "@/sections/projects";
 
 const AboutSection = dynamic(() => import("@/sections/about"));
 const SkillsSection = dynamic(() => import("@/sections/skills"));
@@ -15,6 +16,7 @@ function MainPage() {
       {/* <DynamicSectionWrap section={SECTION_CONFIG.skills.key}> */}
       <SkillsSection />
       {/* </DynamicSectionWrap> */}
+      <ProjectsSection />
     </>
   );
 }

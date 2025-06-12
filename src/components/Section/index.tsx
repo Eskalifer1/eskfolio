@@ -1,13 +1,15 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
+
 
 import { cn } from "@/lib/cn";
 
 import { type Section as SectionType } from "@/consts/sections";
 
-interface SectionProps extends React.HTMLAttributes<HTMLElement> {
-  id: SectionType;
+interface SectionProps extends HTMLAttributes<HTMLElement> {
+  id: SectionType | string;
   as?: React.ElementType;
   sectionClassName?: string;
+  beforeMainContent?: ReactNode;
 }
 
 const Section = forwardRef<HTMLElement, SectionProps>(
@@ -18,6 +20,7 @@ const Section = forwardRef<HTMLElement, SectionProps>(
       className,
       sectionClassName,
       children,
+      beforeMainContent,
       ...props
     },
     ref,
@@ -32,6 +35,7 @@ const Section = forwardRef<HTMLElement, SectionProps>(
         )}
         {...props}
       >
+        {beforeMainContent}
         <div
           className={cn(
             "mx-auto flex h-full max-w-[min(var(--spacing-section),95%)] items-center justify-center px-2 pt-3 pb-[10vh] md:px-4",
