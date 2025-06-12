@@ -46,8 +46,17 @@ export const palette: Record<Section, Palette> = {
     "--shadow-soft": "0 4px 20px rgba(108, 155, 210, 0.2)",
     "--shadow-hard": "0 0 16px rgba(108, 155, 210, 0.4)",
   },
-  // @ts-expect-error eslint-disable-next-line
-  projects: {},
+  projects: {
+    "--color-background": "#b8804d",
+    "--color-primary": "#fdf6e3",
+    "--color-secondary": "#5c3921",
+    "--color-accent": "#7a2eb0",
+    "--color-border": "#3f2b18",
+    "--font-family": "'Silkscreen', 'Orbitron', serif",
+
+    "--shadow-soft": "0 4px 12px rgba(63, 43, 24, 0.3)",
+    "--shadow-hard": "0 0 16px rgba(63, 43, 24, 0.5)",
+  },
 };
 
 /**

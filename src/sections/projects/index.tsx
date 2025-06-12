@@ -5,10 +5,13 @@ import { useActiveSection } from "@/providers/section";
 import { useRef } from "react";
 
 import { Section } from "@/components/Section";
+import { Typography } from "@/components/Typography";
+
+import { slicksScreen } from "@/lib/fonts/slicks-screen";
 
 import { useScrollEffect } from "@/hooks/useScrollEffect";
 
-import { PROJECTS } from "@/consts/projects";
+import { PROJECTS, PROJECTS_LENGTH } from "@/consts/projects";
 import { SECTION_CONFIG } from "@/consts/sections";
 
 import ProjectsHero from "./Hero";
@@ -22,7 +25,7 @@ function ProjectsSection() {
     containerRef: sectionRef,
     active: activeSection === SECTION_CONFIG.projects.key,
     onScrollProgress: (progress) => {
-      const maxTranslate = -window.innerWidth * 2;
+      const maxTranslate = -window.innerWidth * (PROJECTS_LENGTH - 1);
       if (stickyContainerScrollRef?.current) {
         stickyContainerScrollRef.current.style.transform = `translateX(${progress * maxTranslate}px)`;
       }
@@ -34,8 +37,8 @@ function ProjectsSection() {
       <Section
         ref={sectionRef}
         id={SECTION_CONFIG.projects.key}
-        sectionClassName="h-screen snap-center overflow-x-hidden overflow-y-auto !p-0"
-        className="m-0 block h-[300vh] max-w-none !p-0"
+        sectionClassName="h-screen snap-center overflow-x-hidden overflow-y-auto !p-0 bg-secondary"
+        className={`${slicksScreen.className} m-0 block h-[300vh] max-w-none !p-0`}
       >
         <div
           ref={stickyContainerScrollRef}
@@ -54,7 +57,9 @@ function ProjectsSection() {
                 backgroundRepeat: "no-repeat",
               }}
             >
-              {project.name}
+              <Typography variant="h2" as="p">
+                {project.name}
+              </Typography>
             </div>
           ))}
         </div>

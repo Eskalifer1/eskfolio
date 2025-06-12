@@ -49,6 +49,7 @@ function AboutWrap({ children }: PropsType) {
       id={SECTION_CONFIG.about.key}
       className={`${spectral.className} overflow-auto`}
       sectionClassName={`${cursorClassName} ${lightClass}`}
+      aria-label={SECTION_CONFIG.about.title}
     >
       <BackgroundImage
         imageProps={{

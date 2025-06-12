@@ -23,13 +23,14 @@ function SkillsList() {
       >
         {SKILLS.map((skill, index) => (
           <SkillListItem
-            key={skill.name}
+            key={skill.key}
             skill={skill}
             style={{
               // @ts-expect-error CSS variable
               "--skill-color": skill.color,
               animationDelay: `calc((${index} * var(--coefficient) - 5) * 1s)`,
               animationDuration: `calc(${skillsLength} * var(--coefficient) * 1s)`,
+              willChange: "left",
             }}
           />
         ))}

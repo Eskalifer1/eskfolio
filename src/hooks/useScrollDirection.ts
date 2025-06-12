@@ -17,7 +17,7 @@ type UseScrollDirectionOptions = {
 export const useScrollDirection = ({
   containerRef,
   active = true,
-  delay = 100,
+  delay = 200,
 }: UseScrollDirectionOptions): ScrollDirection => {
   const [direction, setDirection] = useState<ScrollDirection>(
     SCROLL_DIRECTION.DOWN,

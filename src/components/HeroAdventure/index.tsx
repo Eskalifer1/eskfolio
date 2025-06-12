@@ -7,6 +7,8 @@ const SPRITE_SIZE = 32;
 const PIXEL_SIZE = 4;
 const MAX_COUNT_OF_FRAMES = 13;
 
+export const HERO_CONTAINER_SIZE = SPRITE_SIZE * PIXEL_SIZE;
+
 interface PropsType {
   containerRef: React.RefObject<HTMLDivElement | null>;
 }
@@ -16,23 +18,20 @@ function HeroAdventure({ containerRef }: PropsType) {
     containerRef,
   });
 
-  console.log("render");
-
-  const containerSize = SPRITE_SIZE * PIXEL_SIZE;
   const frameCount = animationSpriteTypeConfig[animationType].count;
   const rowPosition = animationSpriteTypeConfig[animationType].position;
   const animationSpeed = animationSpriteTypeConfig[animationType].speed;
-  const imageWidth = containerSize * MAX_COUNT_OF_FRAMES;
-  const animationWidth = containerSize * frameCount;
-  const translateY = `-${rowPosition * containerSize}px`;
+  const imageWidth = HERO_CONTAINER_SIZE * MAX_COUNT_OF_FRAMES;
+  const animationWidth = HERO_CONTAINER_SIZE * frameCount;
+  const translateY = `-${rowPosition * HERO_CONTAINER_SIZE}px`;
   const animationDuration = `${frameCount / animationSpeed}s`;
 
   return (
     <div
       className="relative cursor-pointer overflow-hidden select-none"
       style={{
-        width: containerSize,
-        height: containerSize,
+        width: HERO_CONTAINER_SIZE,
+        height: HERO_CONTAINER_SIZE,
         scale: isScrollDown ? "1 1" : "-1 1",
       }}
       onClick={() => playAnimationOnce("cry")}

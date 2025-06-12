@@ -4,10 +4,11 @@ import { useActiveSection } from "@/providers/section";
 
 import { useRef } from "react";
 
-import HeroAdventure from "@/components/HeroAdventure";
+import HeroAdventure, { HERO_CONTAINER_SIZE } from "@/components/HeroAdventure";
 
 import { useScrollEffect } from "@/hooks/useScrollEffect";
 
+import { PROJECTS_LENGTH } from "@/consts/projects";
 import { SECTION_CONFIG } from "@/consts/sections";
 
 interface PropsType {
@@ -25,7 +26,11 @@ function ProjectsHero({ containerRef }: PropsType) {
     active: isScrollAnimationActive,
     onScrollProgress: (progress) => {
       if (!heroRef?.current) return;
-      const left = progress * (window.innerWidth * 3 - 161 - 128 - 16);
+      // 16 - initial position
+      // 161 - Section navigation buttons container width
+      const left =
+        progress *
+        (window.innerWidth * PROJECTS_LENGTH - 161 - HERO_CONTAINER_SIZE - 16);
       heroRef.current!.style.transform = `translateX(${left}px)`;
     },
   });

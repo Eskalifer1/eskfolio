@@ -17,6 +17,7 @@ function HeroSection() {
       <Section
         id={SECTION_CONFIG.hero.key}
         className={`${orbitron.className} flex-col gap-3 overflow-hidden md:flex-row`}
+        aria-label={SECTION_CONFIG.hero.title}
         sectionClassName="bg-background"
       >
         <div className="flex flex-1 flex-col text-center">

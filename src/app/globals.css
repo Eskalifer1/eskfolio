@@ -70,7 +70,7 @@ img {
   --spacing-navbar: var(--navbar-height);
 
   /* About */
-  --cursor-lantern: url(/images/lantern.svg) 24 24, default;
+  --cursor-lantern: url(/cursors/lantern.svg) 24 24, default;
   --shadow-lamp:
     0 0 100px 20px #f2d241, 0 0 300px 100px #f2d24188,
     0 0 600px 200px #f2d24144, 0 0 1000px 300px #f2d24122;

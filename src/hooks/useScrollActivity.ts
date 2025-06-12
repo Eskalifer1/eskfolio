@@ -29,7 +29,7 @@ type UseScrollActivityOptions = {
  */
 export const useScrollActivity = ({
   containerRef,
-  debounceDelay = 100,
+  debounceDelay = 200,
   active = true,
   onStart,
   onStop,
