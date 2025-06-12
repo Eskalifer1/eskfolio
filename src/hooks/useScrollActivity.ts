@@ -1,50 +1,57 @@
-import { useEffect, useState } from "react";
+import { useCallback, useRef } from "react";
+
+import { useSharedScrollListener } from "./useSharedScrollListener";
 
 type UseScrollActivityOptions = {
   containerRef: React.RefObject<HTMLElement | null>;
   debounceDelay?: number;
   active?: boolean;
+
+  /** Called once when scrolling starts */
+  onStart?: () => void;
+
+  /** Called once when scrolling stops (after delay) */
+  onStop?: () => void;
 };
 
 /**
- * Custom hook that detects if user is actively scrolling a container.
+ * Custom hook that tracks scroll activity and triggers callbacks
+ * when scrolling starts and stops.
  *
  * @param {UseScrollActivityOptions} options - Hook options.
- * @returns {boolean} isScrolling - True while user is scrolling.
- *
  * @example
- * const isScrolling = useScrollActivity({ containerRef, debounceDelay: 150 });
+ * useScrollActivity({
+ *   containerRef,
+ *   onStart: () => console.log("Scrolling started"),
+ *   onStop: () => console.log("Scrolling stopped"),
+ *   debounceDelay: 200,
+ * });
  */
 export const useScrollActivity = ({
   containerRef,
-  debounceDelay = 150,
+  debounceDelay = 100,
   active = true,
-}: UseScrollActivityOptions): boolean => {
-  const [isScrolling, setIsScrolling] = useState(false);
+  onStart,
+  onStop,
+}: UseScrollActivityOptions): void => {
+  const isScrollingRef = useRef(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    if (!active) return;
+  const handler = useCallback(() => {
+    if (!isScrollingRef.current) {
+      isScrollingRef.current = true;
+      onStart?.();
+    }
 
-    const container = containerRef.current;
-    if (!container) return;
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
-    let scrollTimeout: ReturnType<typeof setTimeout>;
+    timeoutRef.current = setTimeout(() => {
+      if (isScrollingRef.current) {
+        isScrollingRef.current = false;
+        onStop?.();
+      }
+    }, debounceDelay);
+  }, [debounceDelay, onStart, onStop]);
 
-    const handleScroll = () => {
-      setIsScrolling(true);
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        setIsScrolling(false);
-      }, debounceDelay);
-    };
-
-    container.addEventListener("scroll", handleScroll);
-
-    return () => {
-      clearTimeout(scrollTimeout);
-      container.removeEventListener("scroll", handleScroll);
-    };
-  }, [containerRef, debounceDelay, active]);
-
-  return isScrolling;
+  useSharedScrollListener(containerRef, handler, active);
 };

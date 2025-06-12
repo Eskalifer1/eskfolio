@@ -16,6 +16,8 @@ function HeroAdventure({ containerRef }: PropsType) {
     containerRef,
   });
 
+  console.log("render");
+
   const containerSize = SPRITE_SIZE * PIXEL_SIZE;
   const frameCount = animationSpriteTypeConfig[animationType].count;
   const rowPosition = animationSpriteTypeConfig[animationType].position;
@@ -63,5 +65,7 @@ function HeroAdventure({ containerRef }: PropsType) {
     </div>
   );
 }
+
+// HeroAdventure.whyDidYouRender = true;
 
 export default HeroAdventure;

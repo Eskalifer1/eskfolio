@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 import { useScrollActivity } from "@/hooks/useScrollActivity";
 
-import { HeroAnimationType } from "../consts";
+import { HERO_ANIMATION_TYPE_CONFIG, HeroAnimationType } from "../consts";
 
 type UseHeroScrollAnimationOptions = {
   /** Ref to the scrollable container that triggers animation changes */
@@ -11,16 +11,13 @@ type UseHeroScrollAnimationOptions = {
   /** Whether scroll tracking is active (e.g. based on active section) */
   active: boolean;
 
-  /** Current animation type of the hero (e.g. "idle", "run") */
-  animationType: HeroAnimationType;
-
   /** Setter function to update the hero's animation */
-  setAnimationType: (type: HeroAnimationType) => void;
+  setAnimationType: Dispatch<SetStateAction<HeroAnimationType>>;
 };
 
 /**
  * Custom hook that synchronizes the hero's animation state with scroll activity.
- * While the container is scrolling, the animation is set to `"run"`.
+ * While the container is scrolling, the animation is set to `HERO_ANIMATION_TYPE_CONFIG.run.key`.
  * When scrolling stops, it reverts to `"idle"`.
  *
  * This hook assumes that the animation state (e.g. `useHeroAnimation`) is managed
@@ -41,22 +38,22 @@ type UseHeroScrollAnimationOptions = {
 export const useHeroScrollAnimation = ({
   containerRef,
   active,
-  animationType,
   setAnimationType,
-}: UseHeroScrollAnimationOptions) => {
-  const isScrolling = useScrollActivity({ containerRef, active });
-
-  useEffect(() => {
-    if (!active) return;
-
-    if (isScrolling) {
-      if (animationType !== "run") {
-        setAnimationType("run");
-      }
-    } else {
-      if (animationType === "run") {
-        setAnimationType("idle");
-      }
-    }
-  }, [isScrolling, active, animationType, setAnimationType]);
+}: UseHeroScrollAnimationOptions): void => {
+  useScrollActivity({
+    containerRef,
+    active,
+    onStart: () =>
+      setAnimationType((prev) =>
+        prev === HERO_ANIMATION_TYPE_CONFIG.run.key
+          ? prev
+          : HERO_ANIMATION_TYPE_CONFIG.run.key,
+      ),
+    onStop: () =>
+      setAnimationType((prev) =>
+        prev === HERO_ANIMATION_TYPE_CONFIG.idle.key
+          ? prev
+          : HERO_ANIMATION_TYPE_CONFIG.idle.key,
+      ),
+  });
 };

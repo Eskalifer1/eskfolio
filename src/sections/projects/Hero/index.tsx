@@ -6,7 +6,6 @@ import { useRef } from "react";
 
 import HeroAdventure from "@/components/HeroAdventure";
 
-import { useScrollDirection } from "@/hooks/useScrollDirection";
 import { useScrollEffect } from "@/hooks/useScrollEffect";
 
 import { SECTION_CONFIG } from "@/consts/sections";
@@ -20,14 +19,6 @@ function ProjectsHero({ containerRef }: PropsType) {
   const { activeSection } = useActiveSection();
 
   const isScrollAnimationActive = activeSection === SECTION_CONFIG.projects.key;
-
-  const scrollDirection = useScrollDirection({
-    containerRef,
-    active: activeSection === SECTION_CONFIG.projects.key,
-  });
-
-  // console.log(scrollDirection, "scrollDirection")
-  console.log("render")
 
   useScrollEffect({
     containerRef,
@@ -43,9 +34,6 @@ function ProjectsHero({ containerRef }: PropsType) {
     <div
       ref={heroRef}
       className="no-default-transition absolute bottom-4 left-4 z-1 translate-x-0 will-change-[transform,scale]"
-      // style={{
-      //   scale: scrollDirection === SCROLL_DIRECTION.DOWN ? "-1 1" : "1 -1",
-      // }}
     >
       <HeroAdventure containerRef={containerRef} />
     </div>

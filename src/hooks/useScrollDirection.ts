@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { SCROLL_DIRECTION, ScrollDirection } from "@/consts/scroll/direction";
+
+import { useSharedScrollListener } from "./useSharedScrollListener";
 
 type UseScrollDirectionOptions = {
   containerRef: React.RefObject<HTMLElement | null>;
@@ -14,23 +16,16 @@ type UseScrollDirectionOptions = {
  */
 export const useScrollDirection = ({
   containerRef,
-  active,
-  delay = 200,
+  active = true,
+  delay = 100,
 }: UseScrollDirectionOptions): ScrollDirection => {
   const [direction, setDirection] = useState<ScrollDirection>(
     SCROLL_DIRECTION.DOWN,
   );
   const lastScrollTop = useRef(0);
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const clearScrollTimeout = () => {
-    if (scrollTimeout.current) {
-      clearTimeout(scrollTimeout.current);
-      scrollTimeout.current = null;
-    }
-  };
-
-  const handleScroll = useCallback(() => {
+  const handler = useCallback(() => {
     const container = containerRef.current;
     if (!container) return;
 
@@ -45,24 +40,15 @@ export const useScrollDirection = ({
 
     lastScrollTop.current = currentScrollTop;
 
-    clearScrollTimeout();
-    scrollTimeout.current = setTimeout(() => {
-      setDirection(SCROLL_DIRECTION.DOWN);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setDirection((prev) =>
+        prev === SCROLL_DIRECTION.DOWN ? prev : SCROLL_DIRECTION.DOWN,
+      );
     }, delay);
-  }, [containerRef.current, direction, delay]);
+  }, [containerRef, delay, direction]);
 
-  useEffect(() => {
-    if (!active) return;
-
-    const container = containerRef.current;
-    if (!container) return;
-
-    container.addEventListener("scroll", handleScroll);
-    return () => {
-      container.removeEventListener("scroll", handleScroll);
-      clearScrollTimeout();
-    };
-  }, [active, handleScroll]);
+  useSharedScrollListener(containerRef, handler, active);
 
   return direction;
 };

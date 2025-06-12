@@ -20,17 +20,18 @@ export const useHeroAdventure = ({ containerRef }: PropsType) => {
 
   const { activeSection } = useActiveSection();
 
+  const isActive = activeSection === SECTION_CONFIG.projects.key;
+
   const scrollDirection = useScrollDirection({
     containerRef,
-    active: activeSection === SECTION_CONFIG.projects.key,
+    active: isActive,
   });
 
   const isScrollDown = scrollDirection === SCROLL_DIRECTION.DOWN;
 
   useHeroScrollAnimation({
     containerRef,
-    active: activeSection === SECTION_CONFIG.projects.key,
-    animationType,
+    active: isActive,
     setAnimationType,
   });
 

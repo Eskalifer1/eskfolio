@@ -39,7 +39,7 @@ function ProjectsSection() {
       >
         <div
           ref={stickyContainerScrollRef}
-          className="no-default-transition sticky top-0 flex max-w-none animate-[scroll-section_linear] flex-nowrap [animation-timeline:scroll()]"
+          className="no-default-transition sticky top-0 flex max-w-none flex-nowrap will-change-transform"
         >
           <ProjectsHero containerRef={sectionRef} />
           {PROJECTS.map((project) => (

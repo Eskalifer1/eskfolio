@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 import {
-    animationSpriteTypeConfig,
-    HERO_ANIMATION_TYPE_CONFIG,
-    HeroAnimationType,
+  animationSpriteTypeConfig,
+  HERO_ANIMATION_TYPE_CONFIG,
+  HeroAnimationType,
 } from "../consts";
 
 export const useHeroAnimation = () => {

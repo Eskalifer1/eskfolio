@@ -48,14 +48,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* <WDYRWrapper> */}
-      <Providers>
-        <body className="antialiased">
-          <SiteWrap>
-            <NavBar />
-            {children}
-          </SiteWrap>
-        </body>
-      </Providers>
+        <Providers>
+          <body className="antialiased">
+            <SiteWrap>
+              <NavBar />
+              {children}
+            </SiteWrap>
+          </body>
+        </Providers>
       {/* </WDYRWrapper> */}
     </html>
   );

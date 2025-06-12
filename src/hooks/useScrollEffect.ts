@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useCallback } from "react";
+
+import { useSharedScrollListener } from "./useSharedScrollListener";
 
 type UseScrollEffectOptions = {
   /**
    * Reference to the scrollable container element.
    */
-  containerRef?: React.RefObject<HTMLElement | null>;
+  containerRef: React.RefObject<HTMLElement | null>;
 
   /**
    * Callback executed on scroll, receiving progress (0 to 1),
@@ -53,29 +55,19 @@ export function useScrollEffect({
   onScrollProgress,
   active,
 }: UseScrollEffectOptions) {
-  useEffect(() => {
-    if (!active) return;
+  const handler = useCallback(
+    (event: Event) => {
+      const container = containerRef?.current;
+      if (!container) return;
 
-    const container = containerRef?.current;
-    if (!container) return;
+      const scrollTop = container.scrollTop;
+      const maxScroll = container.scrollHeight - container.clientHeight;
+      const progress = Math.min(scrollTop / maxScroll, 1);
 
-    let animationFrameId: number;
+      onScrollProgress(progress, scrollTop, maxScroll);
+    },
+    [onScrollProgress],
+  );
 
-    const handleScroll = () => {
-      animationFrameId = requestAnimationFrame(() => {
-        const scrollTop = container.scrollTop;
-        const maxScroll = container.scrollHeight - container.clientHeight;
-        const progress = Math.min(scrollTop / maxScroll, 1);
-
-        onScrollProgress(progress, scrollTop, maxScroll);
-      });
-    };
-
-    container.addEventListener("scroll", handleScroll);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      container.removeEventListener("scroll", handleScroll);
-    };
-  }, [containerRef, onScrollProgress, active]);
+  useSharedScrollListener(containerRef, handler, active);
 }
