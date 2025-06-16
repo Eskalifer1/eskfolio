@@ -1,48 +1,28 @@
-import { useEffect } from "react";
-
-import {
-    subscribeToScroll,
-    unsubscribeFromScroll,
-} from "@/helpers/scrollManager";
-
-type UseSharedScrollListenerOptions = AddEventListenerOptions;
+import { useSharedEventListener } from "@/hooks/useSharedEventListener";
 
 /**
- * A shared scroll listener hook that delegates scroll event handling
- * to a centralized scroll manager (`scrollManager`), ensuring only a single
- * scroll event listener is added per container, even if multiple hooks subscribe.
+ * useSharedScrollListener
  *
- * This improves performance and avoids redundant `addEventListener` calls.
+ * A specialized hook that subscribes to a scroll event on a given container.
+ * Internally uses the shared event manager to ensure only one native scroll listener per container.
  *
- * @param {React.RefObject<HTMLElement>} containerRef - Ref to the scrollable element.
- * @param {(e: Event) => void} handler - Scroll event handler to call when scrolling.
- * @param {boolean} [enabled=true] - Whether the scroll listener should be active.
- * @param {UseSharedScrollListenerOptions} [options] - Options passed to `addEventListener`. Defaults to `{ passive: true }`.
+ * ⚠️ Backward-compatible wrapper around `useSharedEventListener`.
+ *
+ * @param {React.RefObject<HTMLElement | null>} containerRef - Ref to the scrollable container.
+ * @param {(e: Event) => void} handler - Function to execute on scroll.
+ * @param {boolean} [enabled=true] - Whether the listener is active.
+ * @param {AddEventListenerOptions} [options={ passive: true }] - Optional listener options.
  *
  * @example
  * useSharedScrollListener(containerRef, (e) => {
- *   console.log("scrolling");
+ *   console.log("scrolling", e);
  * });
  */
 export function useSharedScrollListener(
   containerRef: React.RefObject<HTMLElement | null>,
   handler: (e: Event) => void,
   enabled: boolean = true,
-  options?: UseSharedScrollListenerOptions,
+  options?: AddEventListenerOptions,
 ) {
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!enabled || !container) return;
-
-    // Fallback to passive: true by default
-    const eventOptions: UseSharedScrollListenerOptions = {
-      passive: true,
-      ...options,
-    };
-
-    subscribeToScroll(container, handler, eventOptions);
-    return () => {
-      unsubscribeFromScroll(container, handler);
-    };
-  }, [containerRef.current, enabled, handler, JSON.stringify(options)]);
+  useSharedEventListener(containerRef, "scroll", handler, enabled, options);
 }

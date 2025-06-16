@@ -1,5 +1,6 @@
 "use client";
 
+
 import { animationSpriteTypeConfig } from "./consts";
 import { useHeroAdventure } from "./hooks/useHeroAdventure";
 
@@ -26,6 +27,8 @@ function HeroAdventure({ containerRef }: PropsType) {
   const translateY = `-${rowPosition * HERO_CONTAINER_SIZE}px`;
   const animationDuration = `${frameCount / animationSpeed}s`;
 
+  const animation = `spriteAnimation ${animationDuration} steps(${frameCount}) infinite forwards`;
+
   return (
     <div
       className="relative cursor-pointer overflow-hidden select-none"
@@ -37,12 +40,13 @@ function HeroAdventure({ containerRef }: PropsType) {
       onClick={() => playAnimationOnce("cry")}
     >
       <img
+        key={animationType}
         src="/hero-spread.png"
         alt="Adventure hero"
         style={{
           width: imageWidth,
           maxWidth: "unset",
-          animation: `spriteAnimation ${animationDuration} steps(${frameCount}) infinite forwards`,
+          animation,
           imageRendering: "pixelated",
           position: "absolute",
           top: translateY,
