@@ -20,7 +20,7 @@
 }
 
 .skills-list:has(li:hover) li {
-  animation-play-state: paused;
+  animation-play-state: paused !important;
 }
 
 .skills-list li {
