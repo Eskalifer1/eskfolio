@@ -34,6 +34,27 @@ function ProjectsSection() {
 
   const height = `${PROJECTS_LENGTH * 100}vh`;
 
+  const handleScrollBy = (scrollValue: number | string) => {
+    if (!sectionRef?.current) return;
+
+    let scrollAmount: number;
+
+    if (typeof scrollValue === "string" && scrollValue.endsWith("vh")) {
+      const vh = parseFloat(scrollValue);
+      scrollAmount = (window.innerHeight * vh) / 100;
+    } else if (typeof scrollValue === "number") {
+      scrollAmount = scrollValue;
+    } else {
+      console.warn("Unsupported scroll value format:", scrollValue);
+      return;
+    }
+
+    sectionRef.current.scrollBy({
+      top: scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <Section
@@ -50,7 +71,11 @@ function ProjectsSection() {
         >
           <ProjectsHero containerRef={sectionRef} />
           {PROJECTS.map((project) => (
-            <ProjectItem key={project.key} project={project} />
+            <ProjectItem
+              key={project.key}
+              project={project}
+              onArrowClick={handleScrollBy}
+            />
           ))}
         </div>
       </Section>

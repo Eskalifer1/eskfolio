@@ -1,21 +1,55 @@
+"use client";
+
 import Image from "next/image";
+
+import Arrow from "@/assets/svg/arrow.svg";
 
 import BackgroundImage from "@/components/BackgroundImage";
 import { Typography } from "@/components/Typography";
 
-import { Project } from "@/consts/projects";
+import { Project, PROJECTS, PROJECTS_LENGTH } from "@/consts/projects";
 
 import SkillChip from "./SkillChip";
 
 interface PropsType {
   project: Project;
+  onArrowClick: (value: string | number) => void;
 }
 
-function ProjectItemInnerWrap({ project }: PropsType) {
+function ProjectItemInnerWrap({ project, onArrowClick }: PropsType) {
+  const currentIndex = PROJECTS.findIndex((p) => p.key === project.key);
+
+  const prevProject = currentIndex > 0 ? PROJECTS[currentIndex - 1] : null;
+  const nextProject =
+    currentIndex < PROJECTS_LENGTH - 1 ? PROJECTS[currentIndex + 1] : null;
+
+  const handleLeftArrowClick = () => {
+    if (!prevProject) return;
+    onArrowClick("-100vh");
+  };
+  const handleRightArrowClick = () => {
+    if (!nextProject) return;
+    onArrowClick("100vh");
+  };
+
   return (
     <div className="backdrop-supported relative flex h-full w-full items-center justify-center px-6 pt-4 pb-2">
+      {!!prevProject && (
+        <Arrow
+          className="absolute top-1/2 left-0 z-3 h-20 w-20 -translate-y-1/2 rotate-90 cursor-pointer md:-left-12"
+          aria-label="Scroll to previous project"
+          onClick={handleLeftArrowClick}
+        />
+      )}
+      {!!nextProject && (
+        <Arrow
+          className="absolute top-1/2 right-0 z-3 h-20 w-20 -translate-y-1/2 -scale-y-100 rotate-90 cursor-pointer md:-right-16"
+          aria-label="Scroll to next project"
+          onClick={handleRightArrowClick}
+        />
+      )}
       <BackgroundImage
-        className="inset-[-27%_-10%] z-1 sm:inset-[-27%_-15%] md:inset-[-27%_-17%] 2xl:inset-[-27%_-20%]"
+        className="inset-[-27%_-13%] z-1 sm:inset-[-27%_-15%] md:inset-[-27%_-17%] 2xl:inset-[-27%_-20%]"
         imageProps={{
           src: "/project-border.webp",
           alt: "frame",
