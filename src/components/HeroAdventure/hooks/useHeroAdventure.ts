@@ -50,8 +50,6 @@ export const useHeroAdventure = ({ containerRef }: PropsType) => {
   useKeyboardScroll({
     direction,
     containerRef: containerRef,
-    scrollStep: 20,
-    behavior: "auto",
   });
 
   return { animationType, playAnimationOnce, isScrollDown };

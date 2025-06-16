@@ -40,7 +40,7 @@ function ProjectItemInnerWrap({ project }: PropsType) {
                 />
               </div>
             </div>
-            <div className="flex flex-wrap gap-2 p-1.5" role="ul">
+            <div className="flex flex-wrap gap-2 p-1.5" role="list">
               {project.skills.map((skill) => (
                 <SkillChip key={skill} skillKeyValue={skill} />
               ))}

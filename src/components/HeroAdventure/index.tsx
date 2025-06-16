@@ -43,7 +43,7 @@ function HeroAdventure({ containerRef }: PropsType) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         key={animationType}
-        src="/hero-spread.png"
+        src="/hero-spread.webp"
         alt="Adventure hero"
         style={{
           width: imageWidth,
