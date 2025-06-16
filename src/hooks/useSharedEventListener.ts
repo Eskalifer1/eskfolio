@@ -25,10 +25,12 @@ export function useSharedEventListener(
   options?: AddEventListenerOptions,
 ) {
   useEffect(() => {
+    if (typeof window === "undefined" || !enabled) return;
+
     const resolvedTarget =
       target && "current" in target ? target.current : target;
 
-    if (!enabled || !resolvedTarget) return;
+    if (!resolvedTarget) return;
 
     const eventOptions = { passive: true, ...options };
 

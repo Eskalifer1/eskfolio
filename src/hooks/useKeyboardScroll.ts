@@ -4,6 +4,7 @@ import { Direction } from "./useKeyboardDirection";
 
 type UseKeyboardScrollProps = {
   direction: Direction | null;
+  active?: boolean;
   containerRef?: React.RefObject<HTMLElement | null>;
   scrollStep?: number;
   behavior?: ScrollBehavior;
@@ -15,12 +16,14 @@ type UseKeyboardScrollProps = {
  * Scrolls the container based on left/right direction input.
  *
  * @param {Direction | null} direction - Current direction from keyboard.
+ * @param {boolean} [active=true] - should use event
  * @param {React.RefObject<HTMLElement>} [containerRef] - Optional scrollable container.
  * @param {number} [scrollStep=10] - Step per frame.
  * @param {ScrollBehavior} [behavior='auto'] - Scroll behavior.
  */
 export function useKeyboardScroll({
   direction,
+  active,
   containerRef,
   scrollStep = 10,
   behavior = "auto",
@@ -29,7 +32,7 @@ export function useKeyboardScroll({
 
   useEffect(() => {
     const isHorizontal = direction === "left" || direction === "right";
-    if (!isHorizontal) return;
+    if (!isHorizontal || !active) return;
 
     const container = containerRef?.current ?? window;
     const delta = direction === "right" ? scrollStep : -scrollStep;

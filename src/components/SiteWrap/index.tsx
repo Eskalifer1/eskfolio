@@ -3,6 +3,8 @@
 import { useActiveSection } from "@/providers/section";
 import { getSectionStyles } from "@/theme/palette";
 
+import dynamic from "next/dynamic";
+
 import { ReactNode } from "react";
 
 import { cn } from "@/lib/cn";
@@ -10,14 +12,17 @@ import { cn } from "@/lib/cn";
 import LoadingScreen from "../LoadingScreen";
 import SectionButtons from "../SectionButtons";
 
+const NoSSRLogic = dynamic(() => import("./NoSSRLogic"), { ssr: false });
 interface PropsType {
   children?: ReactNode;
 }
 
 function SiteWrap({ children }: PropsType) {
   const { activeSection } = useActiveSection();
+
   return (
     <>
+      <NoSSRLogic />
       <LoadingScreen />
       <div
         className={cn(

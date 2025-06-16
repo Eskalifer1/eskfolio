@@ -48,6 +48,7 @@ export const useHeroAdventure = ({ containerRef }: PropsType) => {
   });
 
   useKeyboardScroll({
+    active: isActive,
     direction,
     containerRef: containerRef,
   });

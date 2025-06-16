@@ -2,7 +2,10 @@
 
 import Image from "next/image";
 
-import { animationSpriteTypeConfig } from "./consts";
+import {
+  animationSpriteTypeConfig,
+  HERO_ANIMATION_TYPE_CONFIG,
+} from "./consts";
 import { useHeroAdventure } from "./hooks/useHeroAdventure";
 
 const SPRITE_SIZE = 32;
@@ -38,7 +41,7 @@ function HeroAdventure({ containerRef }: PropsType) {
         height: HERO_CONTAINER_SIZE,
         scale: isScrollDown ? "1 1" : "-1 1",
       }}
-      onClick={() => playAnimationOnce("cry")}
+      onClick={() => playAnimationOnce(HERO_ANIMATION_TYPE_CONFIG.cry.key)}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
