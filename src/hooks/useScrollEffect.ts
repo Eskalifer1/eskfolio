@@ -55,19 +55,17 @@ export function useScrollEffect({
   onScrollProgress,
   active,
 }: UseScrollEffectOptions) {
-  const handler = useCallback(
-    (event: Event) => {
-      const container = containerRef?.current;
-      if (!container) return;
+  const handler = useCallback(() => {
+    const container = containerRef?.current;
+    if (!container) return;
 
-      const scrollTop = container.scrollTop;
-      const maxScroll = container.scrollHeight - container.clientHeight;
-      const progress = Math.min(scrollTop / maxScroll, 1);
+    const scrollTop = container.scrollTop;
+    const maxScroll = container.scrollHeight - container.clientHeight;
+    const progress = Math.min(scrollTop / maxScroll, 1);
 
-      onScrollProgress(progress, scrollTop, maxScroll);
-    },
-    [onScrollProgress],
-  );
+    onScrollProgress(progress, scrollTop, maxScroll);
+    // eslint-disable-next-line  react-hooks/exhaustive-deps
+  }, [onScrollProgress]);
 
   useSharedScrollListener(containerRef, handler, active);
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 
 import { animationSpriteTypeConfig } from "./consts";
 import { useHeroAdventure } from "./hooks/useHeroAdventure";
@@ -39,6 +40,7 @@ function HeroAdventure({ containerRef }: PropsType) {
       }}
       onClick={() => playAnimationOnce("cry")}
     >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         key={animationType}
         src="/hero-spread.png"
@@ -54,14 +56,11 @@ function HeroAdventure({ containerRef }: PropsType) {
           transition: "none",
         }}
       />
-      <img
+      <Image
         src="/hero-shadow.webp"
         alt="Hero shadow"
-        style={{
-          width: HERO_CONTAINER_SIZE,
-          height: HERO_CONTAINER_SIZE,
-        }}
-        className="absolute left-[-5px] [image-rendering:pixelated]"
+        fill
+        className="!left-[-5px] [image-rendering:pixelated]"
       />
 
       <style jsx>{`

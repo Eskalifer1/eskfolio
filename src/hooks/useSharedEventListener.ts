@@ -36,11 +36,5 @@ export function useSharedEventListener(
     return () => {
       unsubscribeFromEvent(resolvedTarget, eventType, handler);
     };
-  }, [
-    target && "current" in target ? target.current : target,
-    eventType,
-    enabled,
-    handler,
-    JSON.stringify(options),
-  ]);
+  }, [target, eventType, enabled, handler, options]);
 }
