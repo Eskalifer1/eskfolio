@@ -45,15 +45,6 @@ img {
   --navbar-height: 80px;
 }
 
-@keyframes animation-full-width {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
-
 @theme inline {
   --color-background: var(--color-background);
   --color-primary: var(--color-primary);

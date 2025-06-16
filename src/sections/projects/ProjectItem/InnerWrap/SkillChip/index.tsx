@@ -9,7 +9,10 @@ interface PropsType {
 function SkillChip({ skillKeyValue }: PropsType) {
   const skill = SKILLS.find((s) => s.key === skillKeyValue);
   return (
-    <div className="bg-primary shadow-soft text-secondary border-secondary hover:bg-accent hover:text-primary flex items-center justify-center gap-1 rounded-lg border p-1.5">
+    <div
+      role="listitem"
+      className="bg-primary shadow-soft text-secondary border-secondary hover:bg-accent hover:text-primary flex items-center justify-center gap-1 rounded-lg border p-1.5"
+    >
       <Typography
         className="selection:!bg-secondary selection:!text-primary"
         variant="caption"

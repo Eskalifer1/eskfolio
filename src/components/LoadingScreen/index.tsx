@@ -2,14 +2,28 @@
 
 import { useLoadingSection } from "@/providers/section";
 
+import { useEffect, useState } from "react";
+
 import { cn } from "@/lib/cn";
 
 import { SECTION_CONFIG } from "@/consts/sections";
+import { TIMING } from "@/consts/timing";
 
 function LoadingScreen() {
   const { isTransitioning, loadingSection } = useLoadingSection();
-  // animation-duration is 1 times less than duration of delay for change section
-  const animation = `animate-[animation-full-width_linear_600ms_forwards]`;
+  const [showBar, setShowBar] = useState(false);
+
+  useEffect(() => {
+    if (isTransitioning) {
+      setShowBar(true);
+    } else {
+      const timeout = setTimeout(
+        () => setShowBar(false),
+        TIMING.LOADING_SCREEN_FADE_ANIMATION * 2,
+      );
+      return () => clearTimeout(timeout);
+    }
+  }, [isTransitioning]);
 
   return (
     <div
@@ -26,9 +40,13 @@ function LoadingScreen() {
         </p>
         <div
           className={cn(
-            `mt-4 h-2 w-full rounded bg-green-400`,
-            isTransitioning && animation,
+            "mt-4 h-2 rounded bg-green-400 duration-600",
+            showBar ? "w-full" : "w-0",
           )}
+          style={{
+            transitionTimingFunction: "linear",
+            transitionProperty: "width",
+          }}
         />
       </div>
     </div>
