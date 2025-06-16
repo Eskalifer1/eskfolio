@@ -18,6 +18,7 @@
 
 img {
   pointer-events: none;
+  user-select: none;
 }
 
 .no-default-transition,
@@ -68,6 +69,9 @@ img {
 
   --spacing-section: 1280px;
   --spacing-navbar: var(--navbar-height);
+
+  --spacing-section-padding-top: calc(var(--navbar-height) + 1rem);
+  --spacing-section-max-width: min(var(--spacing-section), 95%);
 
   /* About */
   --cursor-lantern: url(/cursors/lantern.svg) 24 24, default;

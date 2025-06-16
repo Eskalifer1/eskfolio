@@ -27,10 +27,10 @@ function ProjectsHero({ containerRef }: PropsType) {
     onScrollProgress: (progress) => {
       if (!heroRef?.current) return;
       // 16 - initial position
-      // 161 - Section navigation buttons container width
+      // 180 - Section navigation buttons container width
       const left =
         progress *
-        (window.innerWidth * PROJECTS_LENGTH - 161 - HERO_CONTAINER_SIZE - 16);
+        (window.innerWidth * PROJECTS_LENGTH - 180 - HERO_CONTAINER_SIZE - 16);
       heroRef.current!.style.transform = `translateX(${left}px)`;
     },
   });
@@ -38,7 +38,7 @@ function ProjectsHero({ containerRef }: PropsType) {
   return (
     <div
       ref={heroRef}
-      className="no-default-transition absolute bottom-4 left-4 z-1 translate-x-0 will-change-[transform,scale]"
+      className="no-default-transition absolute bottom-4 left-4 z-2 translate-x-0 will-change-[transform,scale]"
     >
       <HeroAdventure containerRef={containerRef} />
     </div>

@@ -1,5 +1,9 @@
-import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
-
+import React, {
+  CSSProperties,
+  forwardRef,
+  HTMLAttributes,
+  ReactNode,
+} from "react";
 
 import { cn } from "@/lib/cn";
 
@@ -10,6 +14,7 @@ interface SectionProps extends HTMLAttributes<HTMLElement> {
   as?: React.ElementType;
   sectionClassName?: string;
   beforeMainContent?: ReactNode;
+  innerWrapStyle?: CSSProperties;
 }
 
 const Section = forwardRef<HTMLElement, SectionProps>(
@@ -21,6 +26,7 @@ const Section = forwardRef<HTMLElement, SectionProps>(
       sectionClassName,
       children,
       beforeMainContent,
+      innerWrapStyle,
       ...props
     },
     ref,
@@ -30,7 +36,7 @@ const Section = forwardRef<HTMLElement, SectionProps>(
         ref={ref}
         id={id}
         className={cn(
-          "relative mx-auto h-full min-h-screen w-full snap-center overflow-hidden pt-[calc(var(--navbar-height)+1rem)]",
+          "pt-section-padding-top relative mx-auto h-full min-h-screen w-full snap-center overflow-hidden",
           sectionClassName,
         )}
         {...props}
@@ -38,9 +44,10 @@ const Section = forwardRef<HTMLElement, SectionProps>(
         {beforeMainContent}
         <div
           className={cn(
-            "mx-auto flex h-full max-w-[min(var(--spacing-section),95%)] items-center justify-center px-2 pt-3 pb-[10vh] md:px-4",
+            "max-w-section-max-width mx-auto flex h-full items-center justify-center px-2 pt-3 pb-[10vh] md:px-4",
             className,
           )}
+          style={innerWrapStyle}
         >
           {children}
         </div>

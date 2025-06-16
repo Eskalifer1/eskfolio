@@ -9,7 +9,7 @@ import { SECTION_CONFIG } from "@/consts/sections";
 
 import HeroExploreButton from "./ExploreButton";
 
-const RobotLottie = dynamic(() => import("@/components/Lotties/Robot"));
+const RobotLottie = dynamic(() => import("@/sections/hero/Robot"));
 
 function HeroSection() {
   return (

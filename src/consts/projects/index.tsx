@@ -24,7 +24,7 @@ export const PROJECTS: Project[] = [
     - Enhancing UX/UI: Focused on usability, responsive design, and accessibility—resulting in a measurable increase in user satisfaction and engagement.
 
     - Business Impact: Delivered scalable, maintainable, and user-centric frontend solutions that directly supported business goals and improved the overall user experience.`,
-    image: "/projects/todo-list.png",
+    image: "/projects/study.webp",
     url: "https://campus.key.study",
     skills: ["react", "mui", "formik", "mobx", "ts", "jwt", "lang"],
   },
@@ -44,7 +44,7 @@ export const PROJECTS: Project[] = [
     - Business Logic Enhancement: Collaborated closely with backend and product teams to restructure and refine frontend-side logic for better maintainability and user outcomes.
 
     - Impact: My contributions helped Wippli become a more stable, efficient, and user-friendly platform—enabling smoother collaboration experiences for users worldwide.`,
-    image: "/projects/adventure.png",
+    image: "/projects/wippli.webp",
     url: "/projects/adventure",
     skills: [
       "react",
@@ -73,7 +73,7 @@ export const PROJECTS: Project[] = [
     - Performance Tuning: Optimized frontend performance to support fast page loads and smooth navigation, especially important for mobile and low-bandwidth users.
 
     - User-Centric Impact: My efforts helped elevate the professionalism and usability of the PRO BHUB platforms, making them more effective educational tools for the beauty community.`,
-    image: "/projects/weather-app.png",
+    image: "/projects/estet.webp",
     url: "https://pro.bhub.com.ua/",
     skills: [
       "react",
@@ -82,8 +82,8 @@ export const PROJECTS: Project[] = [
       "antd",
       "styled",
       "tanstack",
-      "lang",
       "seo",
+      "lang",
     ],
   },
   {
@@ -100,8 +100,8 @@ export const PROJECTS: Project[] = [
     - Responsive UI Design: Designed and developed a responsive layout optimized for mobile-first usage, ensuring seamless usability on phones and tablets during training.
 
     - Personalized Experience: Integrated feedback loops and smart defaults to encourage consistency and ease of use for solo athletes.`,
-    image: "/projects/weather-app.png",
-    url: "/projects/weather-app",
+    image: "/projects/powerpulse.webp",
+    url: "/projects/powerpulse.webp",
     skills: ["react", "next", "ts", "rhf", "styled", "jwt", "lang", "seo"],
   },
 ];

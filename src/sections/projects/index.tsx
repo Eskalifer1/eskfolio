@@ -5,7 +5,6 @@ import { useActiveSection } from "@/providers/section";
 import { useRef } from "react";
 
 import { Section } from "@/components/Section";
-import { Typography } from "@/components/Typography";
 
 import { slicksScreen } from "@/lib/fonts/slicks-screen";
 
@@ -15,6 +14,7 @@ import { PROJECTS, PROJECTS_LENGTH } from "@/consts/projects";
 import { SECTION_CONFIG } from "@/consts/sections";
 
 import ProjectsHero from "./Hero";
+import ProjectItem from "./ProjectItem";
 
 function ProjectsSection() {
   const { activeSection } = useActiveSection();
@@ -32,35 +32,25 @@ function ProjectsSection() {
     },
   });
 
+  const height = `${PROJECTS_LENGTH * 100}vh`;
+
   return (
     <>
       <Section
         ref={sectionRef}
         id={SECTION_CONFIG.projects.key}
         sectionClassName="h-screen snap-center overflow-x-hidden overflow-y-auto !p-0 bg-secondary"
-        className={`${slicksScreen.className} m-0 block h-[300vh] max-w-none !p-0`}
+        className={`${slicksScreen.className} m-0 block !max-w-none !p-0`}
+        innerWrapStyle={{ height }}
+        aria-label="My projects"
       >
         <div
           ref={stickyContainerScrollRef}
-          className="no-default-transition sticky top-0 flex max-w-none flex-nowrap will-change-transform"
+          className="sticky top-0 flex max-w-none flex-nowrap !transition-none will-change-transform"
         >
           <ProjectsHero containerRef={sectionRef} />
           {PROJECTS.map((project) => (
-            <div
-              id={project.key}
-              key={project.key}
-              className="flex h-screen w-screen shrink-0 items-center justify-center"
-              style={{
-                backgroundImage: `url(/castle-room.png)`,
-                backgroundSize: "cover",
-                backgroundPosition: "bottom",
-                backgroundRepeat: "no-repeat",
-              }}
-            >
-              <Typography variant="h2" as="p">
-                {project.name}
-              </Typography>
-            </div>
+            <ProjectItem key={project.key} project={project} />
           ))}
         </div>
       </Section>

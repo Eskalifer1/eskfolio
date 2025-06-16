@@ -1,5 +1,7 @@
 "use client";
 
+import { useActiveSection } from "@/providers/section";
+
 import { ReactNode, useEffect, useRef, useState } from "react";
 
 import BackgroundImage from "@/components/BackgroundImage";
@@ -17,6 +19,7 @@ interface PropsType {
 }
 
 function AboutWrap({ children }: PropsType) {
+  const { activeSection } = useActiveSection();
   const [isLightOn, setIsLightOn] = useState(false);
   const maskRef = useRef<HTMLDivElement>(null);
 
@@ -32,10 +35,12 @@ function AboutWrap({ children }: PropsType) {
 
   useEffect(() => {
     if (isLightOn) return;
+
+    if (activeSection !== SECTION_CONFIG.about.key) return;
     window.addEventListener("mousemove", handleMouseMove);
 
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [isLightOn]);
+  }, [isLightOn, activeSection]);
 
   const handleToggleLight = () => {
     setIsLightOn((prev) => !prev);

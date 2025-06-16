@@ -1,9 +1,17 @@
+"use client";
+
+import { useActiveSection } from "@/providers/section";
+
+import { Typography } from "@/components/Typography";
+
+import { SECTION_CONFIG } from "@/consts/sections";
 import { SKILLS } from "@/consts/skills";
 
 import "./index.css";
 import SkillListItem from "./Item";
 
 function SkillsList() {
+  const { activeSection } = useActiveSection();
   const skillsLength = SKILLS.length;
 
   const maskImage =
@@ -11,8 +19,9 @@ function SkillsList() {
 
   return (
     <div
-      className={`h-full w-full overflow-hidden ${maskImage} flex items-center justify-center`}
+      className={`h-full w-full overflow-hidden ${maskImage} flex flex-col items-center justify-center gap-4`}
     >
+      <Typography variant="h2">My skills</Typography>
       <ul
         className="skills-list group relative flex h-[calc(var(--item-size)*1.2)] w-full items-center gap-6 py-4"
         aria-label="List of technologies and tools I use"
@@ -30,6 +39,10 @@ function SkillsList() {
               "--skill-color": skill.color,
               animationDelay: `calc((${index} * var(--coefficient) - 5) * 1s)`,
               animationDuration: `calc(${skillsLength} * var(--coefficient) * 1s)`,
+              animationPlayState:
+                activeSection === SECTION_CONFIG.skills.key
+                  ? "running"
+                  : "paused",
               willChange: "left",
             }}
           />

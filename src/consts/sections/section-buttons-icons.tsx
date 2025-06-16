@@ -1,5 +1,7 @@
 import CupOfTeaSrc from "@/assets/lotties/cup-of-tea.json";
-import MagicCatSrc from "@/assets/lotties/mage-cat.json";
+import MagicCatSrc from "@/assets/lotties/magic-cat.json";
+import BluePotion from "@/assets/lotties/potion-blue.json";
+import RedPotion from "@/assets/lotties/potion-red.json";
 import FirstRobotSrc from "@/assets/lotties/robot-1.json";
 import SecondRobotSrc from "@/assets/lotties/robot-2.json";
 import FirstStarSrc from "@/assets/lotties/star-1.json";
@@ -72,5 +74,22 @@ export const SectionButtonsIconsMap: Record<Section, ObjectValue> = {
       },
     },
   },
-  projects: { next: null, prev: null },
+  projects: {
+    next: {
+      buttonProps: {
+        leftIconClassName: "group-hover:scale-150",
+      },
+      lottieProps: {
+        animationData: BluePotion,
+      },
+    },
+    prev: {
+      buttonProps: {
+        leftIconClassName: "group-hover:scale-130",
+      },
+      lottieProps: {
+        animationData: RedPotion,
+      },
+    },
+  },
 };

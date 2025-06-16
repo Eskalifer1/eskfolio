@@ -50,6 +50,15 @@ function HeroAdventure({ containerRef }: PropsType) {
           transition: "none",
         }}
       />
+      <img
+        src="/hero-shadow.webp"
+        alt="Hero shadow"
+        style={{
+          width: HERO_CONTAINER_SIZE,
+          height: HERO_CONTAINER_SIZE,
+        }}
+        className="absolute left-[-5px] [image-rendering:pixelated]"
+      />
 
       <style jsx>{`
         @keyframes spriteAnimation {

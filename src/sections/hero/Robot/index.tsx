@@ -5,13 +5,12 @@ import type { LottieComponentProps, LottieRefCurrentProps } from "lottie-react";
 
 import { useEffect, useRef } from "react";
 
-import robotLottieSrc from "@/assets/lotties/robot-lottie.json";
+import robotLottieSrc from "@/assets/lotties/hero-robot.json";
 
 import Loader from "@/components/Loader";
+import Lottie from "@/components/Lotties";
 
 import { SECTION_CONFIG } from "@/consts/sections";
-
-import Lottie from "..";
 
 function RobotLottie(props: Omit<LottieComponentProps, "animationData">) {
   const lottieRef = useRef<LottieRefCurrentProps | null>(null);

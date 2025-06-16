@@ -54,8 +54,8 @@ export const palette: Record<Section, Palette> = {
     "--color-border": "#3f2b18",
     "--font-family": "'Silkscreen', 'Orbitron', serif",
 
-    "--shadow-soft": "0 4px 12px rgba(63, 43, 24, 0.3)",
-    "--shadow-hard": "0 0 16px rgba(63, 43, 24, 0.5)",
+    "--shadow-soft": "0 4px 6px #000",
+    "--shadow-hard": "0 0 16px #000",
   },
 };
 
