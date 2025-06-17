@@ -5,6 +5,7 @@ import { useState } from "react";
 import Button, { ButtonProps } from "@/components/Button";
 import { LottiePropsType } from "@/components/Lotties";
 import HoverLottie from "@/components/Lotties/hover";
+import { Typography } from "@/components/Typography";
 
 export interface SectionButtonProps extends ButtonProps {
   lottieProps?: LottiePropsType;
@@ -34,7 +35,7 @@ function SectionButton({
       }
       {...props}
     >
-      {children}
+      <Typography variant="caption">{children}</Typography>
     </Button>
   );
 }

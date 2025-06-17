@@ -16,13 +16,13 @@ function Bug() {
   };
 
   return (
-    <div
+    <button
       onClick={handleUnlockBugAchievement}
       aria-label="Bug"
       className="absolute right-1/6 bottom-1/5 h-10 w-10 cursor-pointer brightness-75 max-sm:right-1/12"
     >
       <Lottie animationData={BugSrc} />
-    </div>
+    </button>
   );
 }
 

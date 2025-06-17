@@ -39,7 +39,9 @@ function SpellBook() {
           className="[image-rendering:pixelated]"
         />
       </div>
-      {isOpen && <SpellBookModal onClose={handleCloseModal} />}
+      <div>
+        <SpellBookModal onClose={handleCloseModal} isOpen={isOpen} />
+      </div>
     </>
   );
 }

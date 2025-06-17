@@ -6,7 +6,7 @@ interface PropsType {
 
 function ProjectSkeleton({ onClick }: PropsType) {
   return (
-    <div className="absolute bottom-4 left-[200vw] z-2">
+    <div className="absolute bottom-4 left-[230vw] z-2 sm:left-[200vw]">
       <Skeleton aria-hidden onClick={onClick} />
     </div>
   );

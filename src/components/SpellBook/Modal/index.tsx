@@ -9,15 +9,18 @@ import { SECTION_CONFIG } from "@/consts/sections";
 
 interface PropsType {
   onClose: () => void;
+  isOpen?: boolean;
 }
 
-function SpellBookModal({ onClose }: PropsType) {
+function SpellBookModal({ onClose, isOpen }: PropsType) {
   const { unlocked } = useAchievements();
 
   const { activeSection } = useActiveSection();
 
   return (
-    <div className="fixed inset-0 z-20 flex items-center justify-center">
+    <div
+      className={`fade-base fixed inset-0 z-20 flex items-center justify-center ${isOpen ? "fade-enter" : "fade-exit"}`}
+    >
       <div
         aria-label="Modal overlay"
         className="absolute inset-0 -z-1 cursor-pointer bg-black/70"
@@ -30,7 +33,7 @@ function SpellBookModal({ onClose }: PropsType) {
         onClick={onClose}
       >
         <ul
-          className={`flex cursor-default flex-col gap-4 overflow-auto ${activeSection === SECTION_CONFIG.hero.key && "mix-blend-exclusion"}`}
+          className={`flex cursor-auto flex-col gap-4 overflow-auto ${activeSection === SECTION_CONFIG.hero.key && "mix-blend-exclusion"}`}
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -56,6 +59,7 @@ function SpellBookModal({ onClose }: PropsType) {
               fill: true,
               className:
                 "[image-rendering:pixelated] object-cover md:object-contain",
+              priority: true,
             }}
             className="z-1"
           />

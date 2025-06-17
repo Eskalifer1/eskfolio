@@ -38,7 +38,7 @@ function SiteWrap({ children }: PropsType) {
         <SpellBook />
         {children}
         <Toaster
-          toastOptions={{ duration: 5000, position: "top-right" }}
+          toastOptions={{ duration: 4000, position: "top-right" }}
           gutter={24}
         />
       </div>

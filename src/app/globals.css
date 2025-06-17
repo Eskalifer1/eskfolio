@@ -1,21 +1,5 @@
 @import "tailwindcss";
 
-*,
-*::before,
-*::after {
-  outline: none;
-
-  transition:
-    background-color var(--transition-duration) var(--transition-timing),
-    color var(--transition-duration) var(--transition-timing),
-    border-color var(--transition-duration) var(--transition-timing),
-    box-shadow var(--transition-duration) var(--transition-timing),
-    opacity var(--transition-duration) var(--transition-timing),
-    transform var(--transition-duration) var(--transition-timing),
-    scale var(--transition-duration) var(--transition-timing),
-    filter var(--transition-duration) var(--transition-timing);
-}
-
 img {
   pointer-events: none;
   user-select: none;
@@ -98,6 +82,43 @@ img {
   to {
     opacity: 0;
     transform: translateY(20px);
+  }
+}
+
+@layer utilities {
+  *,
+  *::before,
+  *::after {
+    outline: none;
+
+    transition:
+      background-color var(--transition-duration) var(--transition-timing),
+      color var(--transition-duration) var(--transition-timing),
+      border-color var(--transition-duration) var(--transition-timing),
+      box-shadow var(--transition-duration) var(--transition-timing),
+      opacity var(--transition-duration) var(--transition-timing),
+      transform var(--transition-duration) var(--transition-timing),
+      scale var(--transition-duration) var(--transition-timing),
+      filter var(--transition-duration) var(--transition-timing);
+  }
+
+  .fade-enter {
+    transition: all 300ms;
+    opacity: 1;
+    display: block;
+  }
+
+  .fade-exit {
+    transition: all 300ms;
+    opacity: 0;
+    display: none;
+  }
+
+  .fade-base {
+    transition-behavior: allow-discrete !important;
+    @starting-style {
+      opacity: 0;
+    }
   }
 }
 
