@@ -13,7 +13,7 @@ import { useScrollEffect } from "@/hooks/useScrollEffect";
 import { PROJECTS, PROJECTS_LENGTH } from "@/consts/projects";
 import { SECTION_CONFIG } from "@/consts/sections";
 
-import ProjectsHero from "./Hero";
+import ProjectCharacters from "./Characters";
 import ProjectItem from "./ProjectItem";
 
 function ProjectsSection() {
@@ -69,7 +69,7 @@ function ProjectsSection() {
           ref={stickyContainerScrollRef}
           className="sticky top-0 flex max-w-none flex-nowrap !transition-none will-change-transform"
         >
-          <ProjectsHero containerRef={sectionRef} />
+          <ProjectCharacters containerRef={sectionRef} />
           {PROJECTS.map((project) => (
             <ProjectItem
               key={project.key}

@@ -3,6 +3,8 @@ import { useActiveSection } from "@/providers/section";
 
 import { RefObject } from "react";
 
+import { useSpriteAnimation } from "@/components/Sprite/hooks/useSpriteAnimation";
+
 import { useKeyboardDirection } from "@/hooks/useKeyboardDirection";
 import { useKeyboardScroll } from "@/hooks/useKeyboardScroll";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
@@ -11,8 +13,7 @@ import { ACHIEVEMENT_KEYS } from "@/consts/achievements";
 import { SCROLL_DIRECTION } from "@/consts/scroll/direction";
 import { SECTION_CONFIG } from "@/consts/sections";
 
-import { HERO_ANIMATION_TYPE_CONFIG } from "../consts";
-import { useHeroAnimation } from "./useHeroAnimation";
+import { HERO_SPRITE_CONFIG } from "../consts";
 import { useHeroScrollAnimation } from "./useHeroScrollAnimation";
 
 interface PropsType {
@@ -21,7 +22,7 @@ interface PropsType {
 
 export const useHeroAdventure = ({ containerRef }: PropsType) => {
   const { animationType, playAnimationOnce, setAnimationType } =
-    useHeroAnimation();
+    useSpriteAnimation(HERO_SPRITE_CONFIG.idle.key, HERO_SPRITE_CONFIG);
 
   const { unlock } = useAchievements();
 
@@ -47,12 +48,12 @@ export const useHeroAdventure = ({ containerRef }: PropsType) => {
     onPress: (dir) => {
       unlock(ACHIEVEMENT_KEYS.arrowKeysMaster);
       if (dir === "up") {
-        playAnimationOnce(HERO_ANIMATION_TYPE_CONFIG.jump.key);
+        playAnimationOnce(HERO_SPRITE_CONFIG.jump.key);
         return;
       }
 
       if (dir === "down") {
-        playAnimationOnce(HERO_ANIMATION_TYPE_CONFIG.slide.key);
+        playAnimationOnce(HERO_SPRITE_CONFIG.slide.key);
         return;
       }
     },

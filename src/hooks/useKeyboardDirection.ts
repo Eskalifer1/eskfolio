@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { useSharedEventListener } from "@/hooks/useSharedEventListener";
 
@@ -39,7 +39,6 @@ export function useKeyboardDirection({
   onRelease,
 }: UseKeyboardDirectionProps): Direction | null {
   const [direction, setDirection] = useState<Direction | null>(null);
-  const isPressedRef = useRef(false);
 
   useEffect(() => {
     if (active) {
@@ -52,10 +51,13 @@ export function useKeyboardDirection({
     (e: Event) => {
       const event = e as KeyboardEvent;
       const dir = keyToDirectionMap[event.key];
-      if (!dir || isPressedRef.current) return;
+      if (!dir) return;
 
       event.preventDefault();
-      isPressedRef.current = true;
+      event?.stopImmediatePropagation();
+
+      if (dir === direction) return;
+
       setDirection(dir);
       onPress?.(dir);
     },
@@ -69,7 +71,6 @@ export function useKeyboardDirection({
       if (!dir) return;
 
       event.preventDefault();
-      isPressedRef.current = false;
       setDirection(null);
       onRelease?.(dir);
     },

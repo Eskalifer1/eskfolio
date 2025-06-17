@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 import { useScrollActivity } from "@/hooks/useScrollActivity";
 
-import { HERO_ANIMATION_TYPE_CONFIG, HeroAnimationType } from "../consts";
+import { HERO_SPRITE_CONFIG } from "../consts";
 
 type UseHeroScrollAnimationOptions = {
   /** Ref to the scrollable container that triggers animation changes */
@@ -12,7 +12,7 @@ type UseHeroScrollAnimationOptions = {
   active: boolean;
 
   /** Setter function to update the hero's animation */
-  setAnimationType: Dispatch<SetStateAction<HeroAnimationType>>;
+  setAnimationType: Dispatch<SetStateAction<string>>;
 };
 
 /**
@@ -45,15 +45,13 @@ export const useHeroScrollAnimation = ({
     active,
     onStart: () =>
       setAnimationType((prev) =>
-        prev === HERO_ANIMATION_TYPE_CONFIG.run.key
-          ? prev
-          : HERO_ANIMATION_TYPE_CONFIG.run.key,
+        prev === HERO_SPRITE_CONFIG.run.key ? prev : HERO_SPRITE_CONFIG.run.key,
       ),
     onStop: () =>
       setAnimationType((prev) =>
-        prev === HERO_ANIMATION_TYPE_CONFIG.idle.key
+        prev === HERO_SPRITE_CONFIG.idle.key
           ? prev
-          : HERO_ANIMATION_TYPE_CONFIG.idle.key,
+          : HERO_SPRITE_CONFIG.idle.key,
       ),
   });
 };
