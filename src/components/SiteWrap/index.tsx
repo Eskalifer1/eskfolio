@@ -10,7 +10,6 @@ import { ReactNode } from "react";
 
 import { cn } from "@/lib/cn";
 
-import DevTools from "../DevTools";
 import LoadingScreen from "../LoadingScreen";
 import SectionButtons from "../SectionButtons";
 import SpellBook from "../SpellBook";
@@ -25,7 +24,7 @@ function SiteWrap({ children }: PropsType) {
 
   return (
     <>
-      <DevTools />
+      {/* <DevTools /> */}
       <NoSSRLogic />
       <LoadingScreen />
       <div

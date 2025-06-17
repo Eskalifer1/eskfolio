@@ -59,7 +59,6 @@ function SpellBookModal({ onClose, isOpen }: PropsType) {
               fill: true,
               className:
                 "[image-rendering:pixelated] object-cover md:object-contain",
-              priority: true,
             }}
             className="z-1"
           />
