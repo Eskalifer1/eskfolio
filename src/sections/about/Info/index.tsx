@@ -27,21 +27,21 @@ function AboutInfo() {
       <div className="mt-6 flex items-center gap-4 max-md:justify-center">
         <AboutSocialLink
           href={socialLinks.gitHub}
-          outerShadow="shadow-[0px_9px_10px_rgba(0,0,0,0.75)]"
+          outerShadow="shadow-[0px_9px_10px_rgba(0,0,0,0.75)] 2xl:shadow-[-7px_9px_10px_rgba(0,0,0,0.75)]"
           aria-label="Github profile"
         >
           <GitHubIcon />
         </AboutSocialLink>
         <AboutSocialLink
           href={socialLinks.linkedIn}
-          outerShadow="shadow-[2px_9px_10px_rgba(0,0,0,0.75)]"
+          outerShadow="shadow-[2px_9px_10px_rgba(0,0,0,0.75)] 2xl:shadow-[-3px_9px_10px_rgba(0,0,0,0.75)]"
           aria-label="LinkedIn profile"
         >
           <LinkedInIcon />
         </AboutSocialLink>
         <AboutSocialLink
           href={socialLinks.email}
-          outerShadow="shadow-[6px_9px_10px_rgba(0,0,0,0.75)]"
+          outerShadow="shadow-[6px_9px_10px_rgba(0,0,0,0.75)] 2xl:shadow-[0px_9px_10px_rgba(0,0,0,0.75)]"
           title={socialLinks.email}
           aria-label="My email"
         >

@@ -56,6 +56,7 @@ function ProjectItemInnerWrap({ project, onArrowClick }: PropsType) {
           className:
             "object-fill [image-rendering:pixelated] drop-shadow-[0px_0px_10px] drop-shadow-black",
           fill: true,
+          sizes: "(max-width: 768px) 100vw, (max-width: 1440px) 50vw, 90vw",
         }}
       />
       <div className="relative z-1 flex h-full w-full flex-col items-center justify-center gap-4">

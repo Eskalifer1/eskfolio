@@ -2,6 +2,7 @@
 
 import { useActiveSection } from "@/providers/section";
 import { getSectionStyles } from "@/theme/palette";
+import { Toaster } from "react-hot-toast";
 
 import dynamic from "next/dynamic";
 
@@ -9,6 +10,7 @@ import { ReactNode } from "react";
 
 import { cn } from "@/lib/cn";
 
+import DevTools from "../DevTools";
 import LoadingScreen from "../LoadingScreen";
 import SectionButtons from "../SectionButtons";
 
@@ -22,6 +24,7 @@ function SiteWrap({ children }: PropsType) {
 
   return (
     <>
+      <DevTools />
       <NoSSRLogic />
       <LoadingScreen />
       <div
@@ -32,6 +35,10 @@ function SiteWrap({ children }: PropsType) {
         style={getSectionStyles(activeSection)}
       >
         {children}
+        <Toaster
+          toastOptions={{ duration: 5000, position: "top-right" }}
+          gutter={24}
+        />
       </div>
       <SectionButtons />
     </>

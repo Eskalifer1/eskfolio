@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 
+import { AchievementProvider } from "./achievements";
 import { SectionProvider } from "./section";
 
 interface PropsType {
@@ -9,7 +10,11 @@ interface PropsType {
 }
 
 function Providers({ children }: PropsType) {
-  return <SectionProvider>{children}</SectionProvider>;
+  return (
+    <SectionProvider>
+      <AchievementProvider>{children}</AchievementProvider>
+    </SectionProvider>
+  );
 }
 
 export default Providers;

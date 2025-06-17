@@ -1,6 +1,10 @@
 "use client";
 
+import { useAchievements } from "@/providers/achievements";
+
 import Image from "next/image";
+
+import { ACHIEVEMENT_KEYS } from "@/consts/achievements";
 
 import {
   animationSpriteTypeConfig,
@@ -19,6 +23,7 @@ interface PropsType {
 }
 
 function HeroAdventure({ containerRef }: PropsType) {
+  const { unlock } = useAchievements();
   const { animationType, playAnimationOnce, isScrollDown } = useHeroAdventure({
     containerRef,
   });
@@ -33,6 +38,12 @@ function HeroAdventure({ containerRef }: PropsType) {
 
   const animation = `spriteAnimation ${animationDuration} steps(${frameCount}) infinite forwards`;
 
+  const handleHurtHero = () => {
+    playAnimationOnce(HERO_ANIMATION_TYPE_CONFIG.cry.key);
+
+    unlock(ACHIEVEMENT_KEYS.touchOfLife);
+  };
+
   return (
     <div
       className="relative cursor-pointer overflow-hidden select-none"
@@ -41,7 +52,7 @@ function HeroAdventure({ containerRef }: PropsType) {
         height: HERO_CONTAINER_SIZE,
         scale: isScrollDown ? "1 1" : "-1 1",
       }}
-      onClick={() => playAnimationOnce(HERO_ANIMATION_TYPE_CONFIG.cry.key)}
+      onClick={handleHurtHero}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img

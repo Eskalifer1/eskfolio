@@ -33,7 +33,6 @@ function ProjectItem({
           alt: "Castle room",
           className: "object-fill",
           fill: true,
-          sizes: "(max-width: 768px) 100vw, (max-width: 1440px) 50vw, 90vw",
         }}
       />
 

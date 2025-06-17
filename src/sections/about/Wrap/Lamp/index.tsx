@@ -1,15 +1,32 @@
+"use client";
+
+import { useAchievements } from "@/providers/achievements";
+
 import { HTMLAttributes } from "react";
 
 import { cn } from "@/lib/cn";
 
+import { ACHIEVEMENT_KEYS } from "@/consts/achievements";
+
 interface PropsType extends HTMLAttributes<HTMLDivElement> {
   isLightOn: boolean;
+  onClick: () => void;
 }
 
-function AboutLamp({ isLightOn, ...props }: PropsType) {
+function AboutLamp({ isLightOn, onClick, ...props }: PropsType) {
+  const { unlock } = useAchievements();
+  const handleToggleLight = () => {
+    if (onClick) {
+      onClick();
+    }
+    if (!isLightOn) {
+      unlock(ACHIEVEMENT_KEYS.lightBringer);
+    }
+  };
   return (
     <div
-      className="absolute top-0 left-40 z-1 flex cursor-pointer flex-col items-center"
+      className="absolute top-0 left-[10vw] z-1 flex cursor-pointer flex-col items-center 2xl:left-[25vw]"
+      onClick={handleToggleLight}
       {...props}
     >
       <div className="bg-secondary pointer-events-none h-2 w-1 brightness-50" />

@@ -11,6 +11,7 @@ import { spectral } from "@/lib/fonts/spectral";
 
 import { SECTION_CONFIG } from "@/consts/sections";
 
+import Bug from "./Bug";
 import "./cursor-light.css";
 import AboutLamp from "./Lamp";
 
@@ -75,6 +76,7 @@ function AboutWrap({ children }: PropsType) {
         aria-label={isLightOn ? "Turn light off" : "Turn light on"}
         role="button"
       />
+      <Bug />
     </Section>
   );
 }
