@@ -63,6 +63,7 @@ export const Sprite = ({
       onClick={onClick}
       {...props}
     >
+      {/* eslint-disable-next-line */}
       <img
         key={animationType}
         src={spriteImage}

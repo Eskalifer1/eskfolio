@@ -32,14 +32,17 @@ function Skeleton({ onClick, ...props }: PropsType) {
     if (onClick) {
       onClick();
     }
-    playAnimationOnce(SKELETON_SPRITE_CONFIG.die.key, true);
-    unlock(ACHIEVEMENT_KEYS.firstBlood);
+    setTimeout(() => {
+      playAnimationOnce(SKELETON_SPRITE_CONFIG.die.key, true);
+      unlock(ACHIEVEMENT_KEYS.firstBlood);
+    }, 1000);
   };
 
   return (
     <Sprite
       spriteImage="/skeleton-mage-sprite.webp"
-      shadowImage={iterationCount === 1 ? undefined : "/hero-shadow.webp"}
+      shadowImage={isFinalPlayed ? undefined : "/hero-shadow.webp"}
+      className={isFinalPlayed ? "cursor-default" : ""}
       shadowImageClassName="!left-[-11px]"
       animationType={animationType}
       animationConfig={SKELETON_SPRITE_CONFIG}

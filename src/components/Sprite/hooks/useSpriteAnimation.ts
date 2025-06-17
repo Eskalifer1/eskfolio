@@ -68,7 +68,13 @@ export const useSpriteAnimation = (
         }, duration);
       }
     },
-    [animationType, isAnimationInterrupted, animationConfig, defaultAnimation],
+    [
+      animationType,
+      isAnimationInterrupted,
+      animationConfig,
+      defaultAnimation,
+      setAnimationType,
+    ],
   );
 
   return {

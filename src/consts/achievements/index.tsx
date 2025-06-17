@@ -28,7 +28,7 @@ export const ACHIEVEMENTS: Record<AchievementKey, Achievement> = {
     key: "firstBlood",
     title: "First Blood",
     description: "You’ve slain your first monster in this world",
-    howToUnlock: "Click on any monster inside the Projects area",
+    howToUnlock: "Click on skeleton inside the Projects area",
   },
   lightBringer: {
     key: "lightBringer",

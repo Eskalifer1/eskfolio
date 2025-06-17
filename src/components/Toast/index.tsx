@@ -22,7 +22,7 @@ function Toast({ title, description, className, visible, id }: PropsType) {
   return (
     <div
       className={cn(
-        "border-accent shadow-accent font-default text-primary flex w-full max-w-96 cursor-pointer gap-4 rounded-lg border bg-white/20 p-4 font-semibold shadow-md select-none",
+        "border-accent shadow-accent font-default text-primary flex h-fit w-full max-w-96 cursor-pointer gap-4 rounded-lg border bg-white/20 p-4 font-semibold shadow-md select-none",
         "backdrop-supported",
         visible ? "animate-enter" : "animate-leave",
         className,

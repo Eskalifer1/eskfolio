@@ -36,26 +36,29 @@ export const AchievementProvider: React.FC<{ children: React.ReactNode }> = ({
     [unlocked],
   );
 
-  const unlock = (key: AchievementKey) => {
-    setUnlocked((prev) => {
-      if (prev[key]) return prev;
+  const unlock = useCallback(
+    (key: AchievementKey) => {
+      setUnlocked((prev) => {
+        if (prev[key]) return prev;
 
-      return { ...prev, [key]: true };
-    });
+        return { ...prev, [key]: true };
+      });
 
-    if (isUnlocked(key)) return;
+      if (isUnlocked(key)) return;
 
-    const { title, description } = ACHIEVEMENTS[key];
+      const { title, description } = ACHIEVEMENTS[key];
 
-    toast.custom((t) => (
-      <Toast
-        title={title}
-        description={description}
-        visible={t.visible}
-        id={t.id}
-      />
-    ));
-  };
+      toast.custom((t) => (
+        <Toast
+          title={title}
+          description={description}
+          visible={t.visible}
+          id={t.id}
+        />
+      ));
+    },
+    [isUnlocked],
+  );
 
   const reset = useCallback(() => setUnlocked(initialAchievements), []);
 

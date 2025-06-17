@@ -61,7 +61,7 @@ export function useKeyboardDirection({
       setDirection(dir);
       onPress?.(dir);
     },
-    [onPress],
+    [onPress, direction],
   );
 
   const handleKeyUp = useCallback(

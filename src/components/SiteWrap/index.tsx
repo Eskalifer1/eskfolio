@@ -13,6 +13,7 @@ import { cn } from "@/lib/cn";
 import DevTools from "../DevTools";
 import LoadingScreen from "../LoadingScreen";
 import SectionButtons from "../SectionButtons";
+import SpellBook from "../SpellBook";
 
 const NoSSRLogic = dynamic(() => import("./NoSSRLogic"), { ssr: false });
 interface PropsType {
@@ -34,6 +35,7 @@ function SiteWrap({ children }: PropsType) {
         )}
         style={getSectionStyles(activeSection)}
       >
+        <SpellBook />
         {children}
         <Toaster
           toastOptions={{ duration: 5000, position: "top-right" }}

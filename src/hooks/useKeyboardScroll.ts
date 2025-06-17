@@ -53,5 +53,5 @@ export function useKeyboardScroll({
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [direction, containerRef, scrollStep, behavior]);
+  }, [direction, containerRef, scrollStep, behavior, active]);
 }

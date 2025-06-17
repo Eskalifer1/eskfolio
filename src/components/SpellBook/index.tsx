@@ -1,0 +1,47 @@
+import { useAchievements } from "@/providers/achievements";
+
+import Image from "next/image";
+
+import { useState } from "react";
+
+import { ACHIEVEMENTS } from "@/consts/achievements";
+
+import SpellBookModal from "./Modal";
+
+function SpellBook() {
+  const { unlock } = useAchievements();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleBookClick = () => {
+    setIsOpen((prev) => !prev);
+
+    unlock(ACHIEVEMENTS.loreKeeper.key);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+
+  return (
+    <>
+      <div
+        className="fixed bottom-20 left-4 z-25 cursor-pointer"
+        onClick={handleBookClick}
+        aria-label="Open spellbook"
+      >
+        <Image
+          src="/spellbook.webp"
+          alt="Spellbook"
+          sizes="64px"
+          width={80}
+          height={80}
+          quality={100}
+          className="[image-rendering:pixelated]"
+        />
+      </div>
+      {isOpen && <SpellBookModal onClose={handleCloseModal} />}
+    </>
+  );
+}
+
+export default SpellBook;
