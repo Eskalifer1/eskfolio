@@ -12,6 +12,7 @@ import React, {
 } from "react";
 
 import { Section, SECTION_CONFIG, SECTIONS } from "@/consts/sections";
+import { TIMING } from "@/consts/timing";
 
 import { delay } from "@/helpers/delay";
 
@@ -104,7 +105,9 @@ export const SectionProvider = ({
       await delay("LOADING_SCREEN_FADE_ANIMATION");
 
       setActiveSection(target);
-      scrollToSection(target);
+      setTimeout(() => {
+        scrollToSection(target);
+      }, TIMING.LOADING_SCREEN_FADE_ANIMATION);
 
       await delay("LOADING_SCREEN_FADE_ANIMATION");
       setIsTransitioning(false);
