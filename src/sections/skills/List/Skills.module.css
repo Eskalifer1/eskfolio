@@ -1,10 +1,10 @@
-.skills-list {
+.skillsList {
   --item-size: 144px;
   --coefficient: 1;
 }
 
 @media (max-width: 768px) {
-  .skills-list {
+  .skillsList {
     --item-size: 120px;
     --coefficient: 1.1;
   }
@@ -19,11 +19,11 @@
   }
 }
 
-.skills-list:has(li:hover) li {
+.skillsList:has(li:hover) li {
   animation-play-state: paused !important;
 }
 
-.skills-list li {
+.skillsList li {
   animation-name: auto-run;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
@@ -31,48 +31,48 @@
   box-shadow: 0px 0px 4px var(--skill-color);
 }
 
-.skills-list li:hover {
+.skillsList li:hover {
   scale: 1.2;
   filter: brightness(1);
   box-shadow: 0px 0px 30px var(--skill-color);
   z-index: 4;
 }
 
-.skills-list li:hover + * {
+.skillsList li:hover + * {
   scale: 1.1;
   filter: brightness(0.8);
   box-shadow: 0px 0px 15px var(--skill-color);
   z-index: 3;
 }
 
-.skills-list li:hover + * + * {
+.skillsList li:hover + * + * {
   scale: 1.05;
   filter: brightness(0.6);
   box-shadow: 0px 0px 10px var(--skill-color);
   z-index: 2;
 }
 
-.skills-list li:hover + * + * + * {
+.skillsList li:hover + * + * + * {
   box-shadow: 0px 0px 8px var(--skill-color);
   filter: brightness(0.4);
   z-index: 1;
 }
 
-.skills-list li:has(+ *:hover) {
+.skillsList li:has(+ *:hover) {
   scale: 1.1;
   filter: brightness(0.8);
   box-shadow: 0px 0px 15px var(--skill-color);
   z-index: 3;
 }
 
-.skills-list li:has(+ * + *:hover) {
+.skillsList li:has(+ * + *:hover) {
   scale: 1.05;
   filter: brightness(0.6);
   box-shadow: 0px 0px 10px var(--skill-color);
   z-index: 2;
 }
 
-.skills-list li:has(+ * + *:hover) {
+.skillsList li:has(+ * + *:hover) {
   filter: brightness(0.4);
   box-shadow: 0px 0px 8px var(--skill-color);
   z-index: 1;

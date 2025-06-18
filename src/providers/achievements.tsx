@@ -21,9 +21,15 @@ type AchievementContextType = {
 
 const AchievementContext = createContext<AchievementContextType | null>(null);
 
-const initialAchievements = Object.fromEntries(
-  Object.keys(ACHIEVEMENTS).map((key) => [key, false]),
-) as Record<AchievementKey, boolean>;
+const initialAchievements = (
+  Object.keys(ACHIEVEMENTS) as AchievementKey[]
+).reduce(
+  (acc, key) => {
+    acc[key] = false;
+    return acc;
+  },
+  {} as Record<AchievementKey, boolean>,
+);
 
 export const AchievementProvider: React.FC<{ children: React.ReactNode }> = ({
   children,

@@ -2,7 +2,7 @@
 
 import { useAchievements } from "@/providers/achievements";
 
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, useRef } from "react";
 
 import { Sprite } from "@/components/Sprite";
 import { useSpriteAnimation } from "@/components/Sprite/hooks/useSpriteAnimation";
@@ -22,12 +22,16 @@ interface PropsType extends HTMLAttributes<HTMLDivElement> {
 }
 
 function Skeleton({ onClick, ...props }: PropsType) {
+  const hasBeenKilledRef = useRef(false);
+
   const { unlock } = useAchievements();
   const { animationType, playAnimationOnce, iterationCount, isFinalPlayed } =
     useSpriteAnimation(SKELETON_SPRITE_CONFIG.idle.key, SKELETON_SPRITE_CONFIG);
 
   const handleKillSkeleton = () => {
-    if (isFinalPlayed) return;
+    if (hasBeenKilledRef.current || isFinalPlayed) return;
+
+    hasBeenKilledRef.current = true;
 
     if (onClick) {
       onClick();

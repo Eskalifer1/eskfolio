@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { CSSProperties, HTMLAttributes } from "react";
+import { CSSProperties, HTMLAttributes, useEffect, useRef } from "react";
 
 import { cn } from "@/lib/cn";
 
@@ -52,6 +52,28 @@ export const Sprite = ({
 
   const animation = `${animationName} ${animationDuration} steps(${frameCount}) ${iterationCount} forwards`;
 
+  const imgRef = useRef<HTMLImageElement>(null);
+  const prevAnimationType = useRef<string | null>(null);
+
+  // Start animation from the start when it changes
+  // using key will lead to network requests
+  useEffect(() => {
+    if (
+      prevAnimationType.current !== null &&
+      prevAnimationType.current !== animationType
+    ) {
+      const img = imgRef.current;
+      if (img) {
+        img.style.animation = "none";
+
+        void img.offsetHeight;
+
+        img.style.animation = animation;
+      }
+    }
+    prevAnimationType.current = animationType;
+  }, [animationType, animation]);
+
   return (
     <div
       className={`relative cursor-pointer overflow-hidden select-none ${className}`}
@@ -65,7 +87,8 @@ export const Sprite = ({
     >
       {/* eslint-disable-next-line */}
       <img
-        key={animationType}
+        ref={imgRef}
+        // key={animationType}
         src={spriteImage}
         alt="Sprite"
         style={{

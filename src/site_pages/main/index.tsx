@@ -1,20 +1,25 @@
+"use client";
+
+import { useVisitedSections } from "@/providers/section";
+
 import dynamic from "next/dynamic";
 
 import HeroSection from "@/sections/hero";
-import ProjectsSection from "@/sections/projects";
 
-import DynamicSectionWrap from "@/components/DynamicSectionWrap";
 
 import { SECTION_CONFIG } from "@/consts/sections";
 
 const AboutSection = dynamic(() => import("@/sections/about"));
 const SkillsSection = dynamic(() => import("@/sections/skills"));
+const ProjectsSection = dynamic(() => import("@/sections/projects"));
 
 function MainPage() {
+  const { visitedSections } = useVisitedSections();
+
   return (
     <>
       <HeroSection />
-      <DynamicSectionWrap section={SECTION_CONFIG.about.key}>
+      {/* <DynamicSectionWrap section={SECTION_CONFIG.about.key}>
         <AboutSection />
       </DynamicSectionWrap>
       <DynamicSectionWrap section={SECTION_CONFIG.skills.key}>
@@ -22,7 +27,10 @@ function MainPage() {
       </DynamicSectionWrap>
       <DynamicSectionWrap section={SECTION_CONFIG.projects.key}>
         <ProjectsSection />
-      </DynamicSectionWrap>
+      </DynamicSectionWrap> */}
+      {visitedSections.has(SECTION_CONFIG.about.key) && <AboutSection />}
+      {visitedSections.has(SECTION_CONFIG.skills.key) && <SkillsSection />}
+      {visitedSections.has(SECTION_CONFIG.projects.key) && <ProjectsSection />}
     </>
   );
 }

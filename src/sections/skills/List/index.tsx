@@ -7,8 +7,8 @@ import { Typography } from "@/components/Typography";
 import { SECTION_CONFIG } from "@/consts/sections";
 import { SKILLS } from "@/consts/skills";
 
-import "./index.css";
 import SkillListItem from "./Item";
+import styles from "./Skills.module.css";
 
 function SkillsList() {
   const { activeSection } = useActiveSection();
@@ -23,7 +23,7 @@ function SkillsList() {
     >
       <Typography variant="h2">My skills</Typography>
       <ul
-        className="skills-list group relative flex h-[calc(var(--item-size)*1.2)] w-full items-center gap-6 py-4"
+        className={`${styles.skillsList} group relative flex h-[calc(var(--item-size)*1.2)] w-full items-center gap-6 py-4`}
         aria-label="List of technologies and tools I use"
         style={{
           minWidth: `calc(var(--item-size) * ${skillsLength} * var(--coefficient))`,
