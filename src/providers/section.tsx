@@ -99,7 +99,11 @@ export const SectionProvider = ({
 
       setIsTransitioning(true);
       setLoadingSection(target);
-      setVisitedSections((prev) => new Set(prev).add(target));
+
+      // Added for slow internet
+      setTimeout(() => {
+        setVisitedSections((prev) => new Set(prev).add(target));
+      }, 0);
 
       await delay("LOADING_SCREEN_FADE_ANIMATION");
 

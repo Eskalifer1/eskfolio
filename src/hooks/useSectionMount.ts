@@ -3,6 +3,7 @@ import { useEffect } from "react";
 export function useSectionMount(
   id: string,
   onMount: () => void,
+  // eslint-disable-next-line
   deps: any[] = [],
 ) {
   useEffect(() => {
@@ -20,5 +21,6 @@ export function useSectionMount(
       observer.observe(document.body, { childList: true, subtree: true });
       return () => observer.disconnect();
     }
+    // eslint-disable-next-line
   }, deps);
 }
