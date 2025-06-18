@@ -10,7 +10,7 @@ import ProjectItemInnerWrap from "./InnerWrap";
 
 interface PropsType extends HTMLAttributes<HTMLDivElement> {
   project: Project;
-  onArrowClick: (value: string | number) => void;
+  onArrowClick: (value: "forward" | "backward") => void;
 }
 
 function ProjectItem({

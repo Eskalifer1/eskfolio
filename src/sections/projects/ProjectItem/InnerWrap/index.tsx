@@ -13,7 +13,7 @@ import SkillChip from "./SkillChip";
 
 interface PropsType {
   project: Project;
-  onArrowClick: (value: string | number) => void;
+  onArrowClick: (value: "forward" | "backward") => void;
 }
 
 function ProjectItemInnerWrap({ project, onArrowClick }: PropsType) {
@@ -25,11 +25,11 @@ function ProjectItemInnerWrap({ project, onArrowClick }: PropsType) {
 
   const handleLeftArrowClick = () => {
     if (!prevProject) return;
-    onArrowClick("-100vh");
+    onArrowClick("backward");
   };
   const handleRightArrowClick = () => {
     if (!nextProject) return;
-    onArrowClick("100vh");
+    onArrowClick("forward");
   };
 
   return (

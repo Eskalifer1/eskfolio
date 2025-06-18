@@ -34,23 +34,111 @@ function ProjectsSection() {
 
   const height = `${PROJECTS_LENGTH * 100}vh`;
 
-  const handleScrollBy = (scrollValue: number | string) => {
+  // const handleScrollBy = (scrollValue: number | string) => {
+  //   if (!sectionRef?.current) return;
+
+  //   let scrollAmount: number;
+
+  //   if (typeof scrollValue === "string" && scrollValue.endsWith("vh")) {
+  //     const vh = parseFloat(scrollValue);
+  //     scrollAmount = (window.innerHeight * vh) / 100;
+  //   } else if (typeof scrollValue === "number") {
+  //     scrollAmount = scrollValue;
+  //   } else {
+  //     console.warn("Unsupported scroll value format:", scrollValue);
+  //     return;
+  //   }
+
+  //   sectionRef.current.scrollBy({
+  //     top: scrollAmount,
+  //     behavior: "smooth",
+  //   });
+  // };
+
+  // const handleScrollBy = (direction: "forward" | "backward") => {
+  //   if (!sectionRef?.current) return;
+
+  //   const section = sectionRef.current;
+  //   const projectHeight = window.innerHeight;
+  //   const currentScroll = section.scrollTop;
+  //   const currentIndex = Math.round(currentScroll / projectHeight);
+
+  //   let targetIndex =
+  //     direction === "forward"
+  //       ? Math.min(currentIndex + 1, PROJECTS_LENGTH - 1)
+  //       : Math.max(currentIndex - 1, 0);
+
+  //   const targetScroll = targetIndex * projectHeight;
+
+  //   section.scrollTo({
+  //     top: targetScroll,
+  //     behavior: "smooth",
+  //   });
+  // };
+
+  // const handleScrollBy = (direction: "forward" | "backward") => {
+  //   if (!sectionRef?.current) return;
+
+  //   const section = sectionRef.current;
+  //   const projectHeight = window.innerHeight;
+  //   const currentScroll = section.scrollTop;
+
+  //   // Визначаємо індекс найближчої секції
+  //   const floatIndex = currentScroll / projectHeight;
+  //   console.log(floatIndex, "floatIndex");
+  //   let targetIndex: number;
+
+  //   if (direction === "forward") {
+  //     targetIndex =
+  //       floatIndex % 1 > 0.5
+  //         ? Math.min(Math.ceil(floatIndex), PROJECTS_LENGTH - 1)
+  //         : Math.min(Math.floor(floatIndex) + 1, PROJECTS_LENGTH - 1);
+  //   } else {
+  //     targetIndex =
+  //       floatIndex % 1 < 0.5
+  //         ? Math.max(Math.floor(floatIndex), 0)
+  //         : Math.max(Math.ceil(floatIndex) - 1, 0);
+  //   }
+  //   const targetScroll = targetIndex * projectHeight;
+
+  //   section.scrollTo({
+  //     top: targetScroll,
+  //     behavior: "smooth",
+  //   });
+  // };
+
+  const handleScrollBy = (direction: "forward" | "backward") => {
     if (!sectionRef?.current) return;
 
-    let scrollAmount: number;
+    const section = sectionRef.current;
+    const projectHeight = window.innerHeight;
+    const currentScroll = section.scrollTop;
 
-    if (typeof scrollValue === "string" && scrollValue.endsWith("vh")) {
-      const vh = parseFloat(scrollValue);
-      scrollAmount = (window.innerHeight * vh) / 100;
-    } else if (typeof scrollValue === "number") {
-      scrollAmount = scrollValue;
+    // Додаємо крихітну похибку, щоб уникнути прилипання
+    const epsilon = 0.1;
+    const floatIndex =
+      direction === "forward"
+        ? (currentScroll + epsilon) / projectHeight
+        : (currentScroll - epsilon) / projectHeight;
+
+    let targetIndex: number;
+
+    if (direction === "forward") {
+      targetIndex =
+        floatIndex % 1 > 0.5
+          ? Math.min(Math.ceil(floatIndex), PROJECTS_LENGTH - 1)
+          : Math.min(Math.floor(floatIndex) + 1, PROJECTS_LENGTH - 1);
     } else {
-      console.warn("Unsupported scroll value format:", scrollValue);
-      return;
+      targetIndex =
+        floatIndex % 1 < 0.5
+          ? Math.max(Math.floor(floatIndex), 0)
+          : Math.max(Math.ceil(floatIndex) - 1, 0);
     }
 
-    sectionRef.current.scrollBy({
-      top: scrollAmount,
+    const targetScroll = targetIndex * projectHeight;
+
+    section.scrollTo({
+      top: targetScroll,
       behavior: "smooth",
     });
   };
