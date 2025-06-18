@@ -12,7 +12,6 @@ import React, {
 } from "react";
 
 import { Section, SECTION_CONFIG, SECTIONS } from "@/consts/sections";
-import { TIMING } from "@/consts/timing";
 
 import { delay } from "@/helpers/delay";
 
@@ -82,12 +81,12 @@ export const SectionProvider = ({
   const isFirstSection = currentIndex === 0;
   const isLastSection = currentIndex === SECTIONS.length - 1;
 
-  const scrollToSection = (sectionId: Section) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "instant" });
-    }
-  };
+  // const scrollToSection = (sectionId: Section) => {
+  //   const element = document.getElementById(sectionId);
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: "instant" });
+  //   }
+  // };
 
   const transitionTo = useCallback(
     async (target: Section, isFirstLoad?: boolean) => {
@@ -105,9 +104,9 @@ export const SectionProvider = ({
       await delay("LOADING_SCREEN_FADE_ANIMATION");
 
       setActiveSection(target);
-      setTimeout(() => {
-        scrollToSection(target);
-      }, TIMING.LOADING_SCREEN_FADE_ANIMATION);
+      // setTimeout(() => {
+      //   scrollToSection(target);
+      // }, TIMING.LOADING_SCREEN_FADE_ANIMATION);
 
       await delay("LOADING_SCREEN_FADE_ANIMATION");
       setIsTransitioning(false);

@@ -25,7 +25,7 @@ function SkillsWrap({ children }: PropsType) {
     handleMouseMove,
     handleMouseLeave,
   } = useParallaxEffect<HTMLDivElement>();
-  console.log("render")
+
   return (
     <Section
       id={SECTION_CONFIG.skills.key}

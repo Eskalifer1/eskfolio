@@ -1,3 +1,5 @@
+import { useActiveSection } from "@/providers/section";
+
 import React, {
   CSSProperties,
   forwardRef,
@@ -7,10 +9,12 @@ import React, {
 
 import { cn } from "@/lib/cn";
 
+import { useSectionMount } from "@/hooks/useSectionMount";
+
 import { type Section as SectionType } from "@/consts/sections";
 
 interface SectionProps extends HTMLAttributes<HTMLElement> {
-  id: SectionType | string;
+  id: SectionType;
   as?: React.ElementType;
   sectionClassName?: string;
   beforeMainContent?: ReactNode;
@@ -31,6 +35,13 @@ const Section = forwardRef<HTMLElement, SectionProps>(
     },
     ref,
   ) => {
+    const { activeSection } = useActiveSection();
+    useSectionMount(id, () => {
+      if (activeSection === id) {
+        document.getElementById(id)?.scrollIntoView({ behavior: "instant" });
+      }
+    }, [activeSection]);
+
     return (
       <Tag
         ref={ref}
