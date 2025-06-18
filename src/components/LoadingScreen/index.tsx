@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/cn";
 
 import { SECTION_CONFIG } from "@/consts/sections";
-import { TIMING } from "@/consts/timing";
+import { TIMING_DOUBLED_LOADING_SCREEN } from "@/consts/timing";
 
 function LoadingScreen() {
   const { isTransitioning, loadingSection } = useLoadingSection();
@@ -19,7 +19,7 @@ function LoadingScreen() {
     } else {
       const timeout = setTimeout(
         () => setShowBar(false),
-        TIMING.LOADING_SCREEN_FADE_ANIMATION * 2,
+        TIMING_DOUBLED_LOADING_SCREEN,
       );
       return () => clearTimeout(timeout);
     }

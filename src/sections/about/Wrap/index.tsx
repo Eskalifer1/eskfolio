@@ -1,8 +1,6 @@
 "use client";
 
-import { useActiveSection } from "@/providers/section";
-
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode } from "react";
 
 import BackgroundImage from "@/components/BackgroundImage";
 import { Section } from "@/components/Section";
@@ -11,6 +9,7 @@ import { spectral } from "@/lib/fonts/spectral";
 
 import { SECTION_CONFIG } from "@/consts/sections";
 
+import { useSpotlightEffect } from "../hooks/useSpotlightEffect";
 import Bug from "./Bug";
 import "./cursor-light.css";
 import AboutLamp from "./Lamp";
@@ -20,41 +19,14 @@ interface PropsType {
 }
 
 function AboutWrap({ children }: PropsType) {
-  const { activeSection } = useActiveSection();
-  const [isLightOn, setIsLightOn] = useState(false);
-  const maskRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: MouseEvent) => {
-    const x = `${e.clientX}px`;
-    const y = `${e.clientY}px`;
-
-    if (maskRef.current) {
-      maskRef.current.style.setProperty("--x", x);
-      maskRef.current.style.setProperty("--y", y);
-    }
-  };
-
-  useEffect(() => {
-    if (isLightOn) return;
-
-    if (activeSection !== SECTION_CONFIG.about.key) return;
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [isLightOn, activeSection]);
-
-  const handleToggleLight = () => {
-    setIsLightOn((prev) => !prev);
-  };
-
-  const cursorClassName = isLightOn ? "cursor-auto" : "cursor-lantern";
-  const lightClass = isLightOn ? "light-on" : "light-off";
+  const { cursorClassName, lightClassName, isLightOn, toggleLight, maskRef } =
+    useSpotlightEffect(SECTION_CONFIG.about.key);
 
   return (
     <Section
       id={SECTION_CONFIG.about.key}
       className={`${spectral.className} overflow-auto`}
-      sectionClassName={`${cursorClassName} ${lightClass}`}
+      sectionClassName={`${cursorClassName} ${lightClassName}`}
       aria-label={SECTION_CONFIG.about.title}
     >
       <BackgroundImage
@@ -71,9 +43,9 @@ function AboutWrap({ children }: PropsType) {
       {children}
       <AboutLamp
         isLightOn={isLightOn}
-        onClick={handleToggleLight}
+        onClick={toggleLight}
         tabIndex={0}
-        aria-label={isLightOn ? "Turn light off" : "Turn light on"}
+        aria-label={isLightOn ? "Turn off the light" : "Turn on the light"}
         role="button"
       />
       <Bug />

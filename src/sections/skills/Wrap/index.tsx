@@ -1,3 +1,5 @@
+"use client";
+
 import dynamic from "next/dynamic";
 
 import { ReactNode } from "react";
@@ -6,6 +8,8 @@ import BackgroundImage from "@/components/BackgroundImage";
 import { Section } from "@/components/Section";
 
 import { quicksand } from "@/lib/fonts/quicksand";
+
+import { useParallaxEffect } from "@/hooks/useParalaxEffect";
 
 import { SECTION_CONFIG } from "@/consts/sections";
 
@@ -16,20 +20,34 @@ interface PropsType {
 }
 
 function SkillsWrap({ children }: PropsType) {
+  const {
+    ref: bgRef,
+    handleMouseMove,
+    handleMouseLeave,
+  } = useParallaxEffect<HTMLDivElement>();
+  console.log("render")
   return (
     <Section
       id={SECTION_CONFIG.skills.key}
       className={quicksand.className}
       aria-label={SECTION_CONFIG.skills.title}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
-      <BackgroundImage
-        imageProps={{
-          src: "/star-sky.webp",
-          alt: "Background with Stars",
-          fill: true,
-          className: "object-center",
-        }}
-      />
+      <div
+        ref={bgRef}
+        className="absolute inset-0 z-[-1] transition-transform duration-300 ease-linear will-change-transform"
+      >
+        <BackgroundImage
+          imageProps={{
+            src: "/star-sky.webp",
+            alt: "Background with Stars",
+            fill: true,
+            className: "object-center",
+          }}
+          className="inset-[-60px]"
+        />
+      </div>
       <SkillsSky />
       {children}
     </Section>

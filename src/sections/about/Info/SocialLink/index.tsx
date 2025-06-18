@@ -1,4 +1,10 @@
+import { useActiveSection } from "@/providers/section";
+
 import { AnchorHTMLAttributes } from "react";
+
+import { useMagneticEffect } from "@/hooks/useMagneticEffect";
+
+import { SECTION_CONFIG } from "@/consts/sections";
 
 import WoodenFrame from "../../WoodenFrame";
 
@@ -12,8 +18,17 @@ function AboutSocialLink({
   children,
   ...props
 }: PropsType) {
+  const { activeSection } = useActiveSection();
+
+  const active = activeSection === SECTION_CONFIG.about.key;
+  const ref = useMagneticEffect<HTMLAnchorElement>({
+    radius: 60,
+    strength: 0.5,
+    active,
+  });
+
   return (
-    <a target={target} {...props}>
+    <a target={target} className="ease-linear" ref={ref} {...props}>
       <WoodenFrame
         borderWidth={4}
         height="h-16"

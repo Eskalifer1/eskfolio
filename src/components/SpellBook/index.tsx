@@ -25,7 +25,7 @@ function SpellBook() {
   return (
     <>
       <div
-        className="fixed bottom-20 left-4 z-25 cursor-pointer"
+        className="fixed bottom-20 left-4 z-25 cursor-pointer transition-all hover:scale-105"
         onClick={handleBookClick}
         aria-label="Open spellbook"
       >
