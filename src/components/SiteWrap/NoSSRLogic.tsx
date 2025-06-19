@@ -2,9 +2,15 @@
 
 import { useSectionKeyboardNavigation } from "@/hooks/useSectionKeyboardNavigation";
 
+import SiteWrapMusic from "./Music";
+
 function NoSSRLogic() {
   useSectionKeyboardNavigation();
-  return <div />;
+  return (
+    <>
+      <SiteWrapMusic />
+    </>
+  );
 }
 
 export default NoSSRLogic;

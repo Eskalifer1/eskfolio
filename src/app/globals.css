@@ -24,7 +24,7 @@ img {
   --shadow-hard: 5px -5px 10px #989898, -5px 5px 10px #ffffff;
 
   --transition-duration: 0.3s;
-  --transition-timing: ease-in-out;
+  --transition-timing: linear;
 
   --navbar-height: 80px;
 }

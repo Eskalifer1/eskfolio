@@ -45,7 +45,7 @@ export const PROJECTS: Project[] = [
 
     - Impact: My contributions helped Wippli become a more stable, efficient, and user-friendly platform—enabling smoother collaboration experiences for users worldwide.`,
     image: "/projects/wippli.webp",
-    url: "/projects/adventure",
+    url: "https://app.wippli.com/",
     skills: [
       "react",
       "next",
@@ -99,9 +99,11 @@ export const PROJECTS: Project[] = [
 
     - Responsive UI Design: Designed and developed a responsive layout optimized for mobile-first usage, ensuring seamless usability on phones and tablets during training.
 
-    - Personalized Experience: Integrated feedback loops and smart defaults to encourage consistency and ease of use for solo athletes.`,
+    - Personalized Experience: Integrated feedback loops and smart defaults to encourage consistency and ease of use for solo athletes.
+    
+    THE BACKEND IS HOSTED ON A FREE PLATFORM, SO YOU NEED TO WAIT A MINUTE AFTER THE FIRST REQUEST FOR THE BACKEND TO START WORKING`,
     image: "/projects/powerpulse.webp",
-    url: "/projects/powerpulse.webp",
+    url: "https://powerpulse.vercel.app/",
     skills: ["react", "next", "ts", "rhf", "styled", "jwt", "lang", "seo"],
   },
 ];

@@ -7,6 +7,7 @@ import { HTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 
 import { ACHIEVEMENT_KEYS } from "@/consts/achievements";
+import { playMusic } from "@/consts/music";
 
 interface PropsType extends HTMLAttributes<HTMLDivElement> {
   isLightOn: boolean;
@@ -19,6 +20,9 @@ function AboutLamp({ isLightOn, onClick, ...props }: PropsType) {
     if (onClick) {
       onClick();
     }
+
+    playMusic("LAMP_TOGGLE");
+
     if (!isLightOn) {
       unlock(ACHIEVEMENT_KEYS.lightBringer);
     }

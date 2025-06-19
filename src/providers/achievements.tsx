@@ -11,6 +11,7 @@ import {
 import Toast from "@/components/Toast";
 
 import { AchievementKey, ACHIEVEMENTS } from "@/consts/achievements";
+import { playMusic } from "@/consts/music";
 
 type AchievementContextType = {
   unlocked: Readonly<Record<AchievementKey, boolean>>;
@@ -51,6 +52,8 @@ export const AchievementProvider: React.FC<{ children: React.ReactNode }> = ({
       });
 
       if (isUnlocked(key)) return;
+
+      playMusic("ACHIEVEMENT_UNLOCK");
 
       const { title, description } = ACHIEVEMENTS[key];
 

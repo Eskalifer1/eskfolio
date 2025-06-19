@@ -8,6 +8,8 @@ import { Sprite } from "@/components/Sprite";
 import { useSpriteAnimation } from "@/components/Sprite/hooks/useSpriteAnimation";
 
 import { ACHIEVEMENT_KEYS } from "@/consts/achievements";
+import { playMusic } from "@/consts/music";
+
 
 import { SKELETON_SPRITE_CONFIG } from "./consts";
 
@@ -39,6 +41,7 @@ function Skeleton({ onClick, ...props }: PropsType) {
     setTimeout(() => {
       playAnimationOnce(SKELETON_SPRITE_CONFIG.die.key, true);
       unlock(ACHIEVEMENT_KEYS.firstBlood);
+      playMusic("SKELETON_DIE");
     }, 1000);
   };
 

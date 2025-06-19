@@ -7,6 +7,8 @@ import { RefObject, useImperativeHandle } from "react";
 import { HeroAdventureRefAPI } from "@/sections/projects/Characters/types";
 
 import { ACHIEVEMENT_KEYS } from "@/consts/achievements";
+import { playMusic } from "@/consts/music";
+
 
 import { Sprite } from "../../Sprite";
 import { HERO_SPRITE_CONFIG } from "./consts";
@@ -32,6 +34,7 @@ function HeroAdventure({ containerRef, heroRef }: PropsType) {
   const handleHurtHero = () => {
     playAnimationOnce(HERO_SPRITE_CONFIG.cry.key);
     unlock(ACHIEVEMENT_KEYS.touchOfLife);
+    playMusic("HERO_DAMAGE");
   };
 
   useImperativeHandle(heroRef, () => ({

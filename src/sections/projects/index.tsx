@@ -114,7 +114,6 @@ function ProjectsSection() {
     const projectHeight = window.innerHeight;
     const currentScroll = section.scrollTop;
 
-    // Додаємо крихітну похибку, щоб уникнути прилипання
     const epsilon = 0.1;
     const floatIndex =
       direction === "forward"

@@ -61,7 +61,9 @@ function ProjectItemInnerWrap({ project, onArrowClick }: PropsType) {
       />
       <div className="relative z-1 flex h-full w-full flex-col items-center justify-center gap-4">
         <div className="text-center">
-          <Typography variant="h2">{project.name}</Typography>
+          <a href={project.url} target="_blank" className="hover:underline">
+            <Typography variant="h2">{project.name}</Typography>
+          </a>
         </div>
         <div className="flex flex-1 gap-2 overflow-auto py-1.5 max-sm:flex-col">
           <div className="flex flex-1 flex-col items-center justify-center gap-2">

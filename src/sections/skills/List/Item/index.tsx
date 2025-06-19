@@ -4,13 +4,21 @@ import { Typography } from "@/components/Typography";
 
 import { cn } from "@/lib/cn";
 
+import { playMusic } from "@/consts/music";
 import { Skill } from "@/consts/skills";
 
 interface PropsType extends LiHTMLAttributes<HTMLLIElement> {
   skill: Skill;
 }
 
-function SkillListItem({ skill, className, ...rest }: PropsType) {
+function SkillListItem({ skill, onMouseEnter, className, ...rest }: PropsType) {
+  const handleHover = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    if (onMouseEnter) {
+      onMouseEnter(event);
+    }
+    playMusic("SKILL_HOVER");
+  };
+
   return (
     <li
       className={cn(
@@ -18,6 +26,7 @@ function SkillListItem({ skill, className, ...rest }: PropsType) {
         className,
         "bg-black",
       )}
+      onMouseEnter={handleHover}
       {...rest}
     >
       <div className="h-10 w-10 shrink-0 overflow-hidden rounded-sm">

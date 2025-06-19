@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { ACHIEVEMENTS } from "@/consts/achievements";
+import { playMusic } from "@/consts/music";
 
 import SpellBookModal from "./Modal";
 
@@ -15,11 +16,18 @@ function SpellBook() {
   const handleBookClick = () => {
     setIsOpen((prev) => !prev);
 
+    if (isOpen) {
+      playMusic("CLOSE_BOOK");
+    } else {
+      playMusic("OPEN_BOOK");
+    }
+
     unlock(ACHIEVEMENTS.loreKeeper.key);
   };
 
   const handleCloseModal = () => {
     setIsOpen(false);
+    playMusic("CLOSE_BOOK");
   };
 
   return (
