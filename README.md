@@ -1,9 +1,5 @@
 # Eskfolio
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/Eskalifer1/eskfolio/actions)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/Eskalifer1/eskfolio/releases)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-
 ## 🌟 What the Project Does
 
 **Eskfolio** is a gamified, interactive portfolio website designed to showcase the skills, projects, and achievements of a frontend developer. Inspired by video game aesthetics, the site offers a unique, immersive experience where users can explore sections like "About Me," "Skills," and "Projects" while unlocking achievements and interacting with animated elements.
