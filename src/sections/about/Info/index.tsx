@@ -30,14 +30,14 @@ function AboutInfo() {
           outerShadow="shadow-[0px_9px_10px_rgba(0,0,0,0.75)] 2xl:shadow-[-7px_9px_10px_rgba(0,0,0,0.75)]"
           aria-label="Github profile"
         >
-          <GitHubIcon />
+          <GitHubIcon className="h-full w-full" />
         </AboutSocialLink>
         <AboutSocialLink
           href={socialLinks.linkedIn}
           outerShadow="shadow-[2px_9px_10px_rgba(0,0,0,0.75)] 2xl:shadow-[-3px_9px_10px_rgba(0,0,0,0.75)]"
           aria-label="LinkedIn profile"
         >
-          <LinkedInIcon />
+          <LinkedInIcon className="h-full w-full" />
         </AboutSocialLink>
         <AboutSocialLink
           href={socialLinks.email}
@@ -45,7 +45,7 @@ function AboutInfo() {
           title={socialLinks.email}
           aria-label="My email"
         >
-          <EmailIcon />
+          <EmailIcon className="h-full w-full" />
         </AboutSocialLink>
       </div>
     </>

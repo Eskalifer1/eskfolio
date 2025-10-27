@@ -4,6 +4,8 @@ import { useAchievements } from "@/providers/achievements";
 
 import { HTMLAttributes } from "react";
 
+import { Typography } from "@/components/Typography";
+
 import { cn } from "@/lib/cn";
 
 import { ACHIEVEMENT_KEYS } from "@/consts/achievements";
@@ -43,7 +45,9 @@ function AboutLamp({ isLightOn, onClick, ...props }: PropsType) {
             isLightOn && "brightness-105",
           )}
         >
-          {!isLightOn && "Turn on!"}
+          {!isLightOn && (
+            <Typography className="pointer-events-none select-none">Turn on!</Typography>
+          )}
         </div>
         <div
           className={cn(
