@@ -15,6 +15,8 @@ import { Section, SECTION_CONFIG, SECTIONS } from "@/consts/sections";
 
 import { delay } from "@/helpers/delay";
 
+// ---------------- TYPES ----------------
+
 interface ActiveSectionState {
   activeSection: Section;
   isFirstSection: boolean;
@@ -38,7 +40,12 @@ interface NavigationContextType {
   goToPrevSection: () => void;
 }
 
-// CONTEXTS
+interface SectionLoadContextType {
+  reportSectionLoaded: (section: Section) => void;
+}
+
+// ---------------- CONTEXTS ----------------
+
 const ActiveSectionContext = createContext<ActiveSectionState | undefined>(
   undefined,
 );
@@ -49,8 +56,12 @@ const VisitedSectionsContext = createContext<VisitedSectionsState | undefined>(
 const NavigationContext = createContext<NavigationContextType | undefined>(
   undefined,
 );
+const SectionLoadContext = createContext<SectionLoadContextType | undefined>(
+  undefined,
+);
 
-// PROVIDER
+// ---------------- PROVIDER ----------------
+
 export const SectionProvider = ({
   children,
 }: {
@@ -81,12 +92,7 @@ export const SectionProvider = ({
   const isFirstSection = currentIndex === 0;
   const isLastSection = currentIndex === SECTIONS.length - 1;
 
-  // const scrollToSection = (sectionId: Section) => {
-  //   const element = document.getElementById(sectionId);
-  //   if (element) {
-  //     element.scrollIntoView({ behavior: "instant" });
-  //   }
-  // };
+  // ----------- NAVIGATION LOGIC -----------
 
   const transitionTo = useCallback(
     async (target: Section, isFirstLoad?: boolean) => {
@@ -100,7 +106,6 @@ export const SectionProvider = ({
       setIsTransitioning(true);
       setLoadingSection(target);
 
-      // Added for slow internet
       setTimeout(() => {
         setVisitedSections((prev) => new Set(prev).add(target));
       }, 0);
@@ -108,16 +113,6 @@ export const SectionProvider = ({
       await delay("LOADING_SCREEN_FADE_ANIMATION");
 
       setActiveSection(target);
-      // setTimeout(() => {
-      //   scrollToSection(target);
-      // }, TIMING.LOADING_SCREEN_FADE_ANIMATION);
-
-      await delay("LOADING_SCREEN_FADE_ANIMATION");
-      setIsTransitioning(false);
-
-      await delay("LOADING_SCREEN_FADE_ANIMATION");
-      await delay("LOADING_SCREEN_FADE_ANIMATION");
-      setLoadingSection(null);
     },
     [],
   );
@@ -132,10 +127,28 @@ export const SectionProvider = ({
     transitionTo(SECTIONS[currentIndex - 1]);
   }, [isFirstSection, currentIndex, transitionTo]);
 
+  // ----------- REPORT SECTION LOADED -----------
+
+  const reportSectionLoaded = useCallback(async (section: Section) => {
+    if (loadingSectionRef.current !== section) return;
+
+    await delay("LOADING_SCREEN_FADE_ANIMATION");
+    await delay("LOADING_SCREEN_FADE_ANIMATION");
+    setIsTransitioning(false);
+
+    await delay("LOADING_SCREEN_FADE_ANIMATION");
+    await delay("LOADING_SCREEN_FADE_ANIMATION");
+    setLoadingSection(null);
+  }, []);
+
+  // ----------- INITIAL MOUNT -----------
+
   useLayoutEffect(() => {
     transitionTo(SECTION_CONFIG.hero.key, true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // ----------- CONTEXT VALUES -----------
 
   const activeSectionValue = useMemo(
     () => ({
@@ -173,12 +186,21 @@ export const SectionProvider = ({
     [transitionTo, goToNextSection, goToPrevSection],
   );
 
+  const sectionLoadValue = useMemo(
+    () => ({ reportSectionLoaded }),
+    [reportSectionLoaded],
+  );
+
+  // ----------- PROVIDERS TREE -----------
+
   return (
     <ActiveSectionContext.Provider value={activeSectionValue}>
       <LoadingContext.Provider value={loadingValue}>
         <VisitedSectionsContext.Provider value={visitedSectionsValue}>
           <NavigationContext.Provider value={navigationValue}>
-            {children}
+            <SectionLoadContext.Provider value={sectionLoadValue}>
+              {children}
+            </SectionLoadContext.Provider>
           </NavigationContext.Provider>
         </VisitedSectionsContext.Provider>
       </LoadingContext.Provider>
@@ -186,7 +208,8 @@ export const SectionProvider = ({
   );
 };
 
-// HOOKS
+// ---------------- HOOKS ----------------
+
 export const useActiveSection = () => {
   const context = useContext(ActiveSectionContext);
   if (!context)
@@ -197,7 +220,7 @@ export const useActiveSection = () => {
 export const useLoadingSection = () => {
   const context = useContext(LoadingContext);
   if (!context)
-    throw new Error("useLoading must be used within SectionProvider");
+    throw new Error("useLoadingSection must be used within SectionProvider");
   return context;
 };
 
@@ -212,5 +235,14 @@ export const useSectionNavigation = () => {
   const context = useContext(NavigationContext);
   if (!context)
     throw new Error("useSectionNavigation must be used within SectionProvider");
+  return context;
+};
+
+export const useSectionLoadReporter = () => {
+  const context = useContext(SectionLoadContext);
+  if (!context)
+    throw new Error(
+      "useSectionLoadReporter must be used within SectionProvider",
+    );
   return context;
 };

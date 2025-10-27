@@ -9,6 +9,7 @@ import React, {
 
 import { cn } from "@/lib/cn";
 
+import { useSectionImagesLoaded } from "@/hooks/useSectionImagesLoaded";
 import { useSectionMount } from "@/hooks/useSectionMount";
 
 import { type Section as SectionType } from "@/consts/sections";
@@ -36,11 +37,16 @@ const Section = forwardRef<HTMLElement, SectionProps>(
     ref,
   ) => {
     const { activeSection } = useActiveSection();
+
+    // Scroll section into view when it becomes active
     useSectionMount(id, () => {
       if (activeSection === id) {
         document.getElementById(id)?.scrollIntoView({ behavior: "instant" });
       }
     }, [activeSection]);
+
+    // Automatically reports when all images in this section are loaded
+    useSectionImagesLoaded(id);
 
     return (
       <Tag
@@ -70,4 +76,3 @@ const Section = forwardRef<HTMLElement, SectionProps>(
 Section.displayName = "Section";
 
 export { Section };
-

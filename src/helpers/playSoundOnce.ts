@@ -1,21 +1,42 @@
 /**
- * Plays a sound once with the given source and volume.
+ * Plays a sound once with caching.
  *
- * This function creates a new Audio instance and attempts to play it once.
- * It’s useful for short sound effects triggered by user actions, like button clicks.
- * Browsers may block autoplay unless the sound is triggered by user interaction.
- *
- * @param {string} src - The path to the audio file (relative or absolute URL).
- * @param {number} [volume=1] - Volume level from 0.0 (muted) to 1.0 (max).
- *
- * @example
- * // Play a click sound at half volume
- * playSoundOnce("/sounds/click.mp3", 0.5);
+ * Audio elements are cached by `src` to avoid reloading the same sound file multiple times.
+ * For multiple rapid plays (e.g., repeated clicks), it clones the cached audio element.
  */
-export const playSoundOnce = (src: string, volume: number = 1) => {
-  const audio = new Audio(src);
-  audio.volume = volume;
-  audio.play().catch((err) => {
-    console.warn("User interaction required to play sound:", err);
-  });
-};
+
+let audioContext: AudioContext | null = null;
+const bufferCache = new Map<string, AudioBuffer>();
+
+function getAudioContext() {
+  if (typeof window === "undefined") return null; // SSR guard
+
+  if (!audioContext) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const Ctx = window.AudioContext || (window as any).webkitAudioContext;
+    audioContext = new Ctx();
+  }
+  return audioContext;
+}
+
+export async function playSoundOnce(src: string, volume: number = 1) {
+  const ctx = getAudioContext();
+  if (!ctx) return;
+
+  let buffer = bufferCache.get(src);
+  if (!buffer) {
+    const response = await fetch(src);
+    const arrayBuffer = await response.arrayBuffer();
+    buffer = await ctx.decodeAudioData(arrayBuffer);
+    bufferCache.set(src, buffer);
+  }
+
+  const source = ctx.createBufferSource();
+  source.buffer = buffer;
+
+  const gainNode = ctx.createGain();
+  gainNode.gain.value = volume;
+
+  source.connect(gainNode).connect(ctx.destination);
+  source.start(0);
+}
