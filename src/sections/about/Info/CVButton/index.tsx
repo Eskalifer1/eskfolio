@@ -6,7 +6,7 @@ import { downloadLocalFile } from "@/helpers/downloadLocalFile";
 
 function CVButton() {
   const handleDownloadCV = () => {
-    downloadLocalFile("/CV_Artem.pdf");
+    downloadLocalFile("/CV_Middle_Frontend_Developer.pdf");
   };
 
   return (
